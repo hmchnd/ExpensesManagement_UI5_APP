@@ -1,0 +1,251 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m" controllerName="com.bnsf.eam.tne.controller.PCEmployee"
+	xmlns="sap.uxap" xmlns:custom="com.bnsf.tne.bnsfContols" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:Page id="tne.pcEmp.Page" showNavButton="true" navButtonPress="onBack"
+		enableScrolling="false">
+		<m:headerContent>
+			<l:VerticalLayout class="sapUiBreadcrumbsMarginContent"
+				width="100%">
+				<l:content>
+					<custom:Breadcrumbs currentLocationText="{Name}">
+						<m:Link text="{path: '/selGang/id'}" />
+						<m:Link
+							text=" {path: '/selGang/workDate', 
+			formatter: 'com.bnsf.eam.tne.util.DateAndTimeConversion.workDateDisplayBreadcrumb'}"
+							press="navToDashCalendar" />
+						<m:Link text=" Lineup" press="navToLineup" />
+						<m:Link text=" Activities" press="navToActivities" />
+						<m:Link text=" Paycodes" press="onNavBack" />
+					</custom:Breadcrumbs>
+				</l:content>
+			</l:VerticalLayout>
+
+		</m:headerContent>
+		<m:content>
+
+			<ObjectPageLayout id="tne.pcEmp.ObjectPageLayout"
+				isChildPage="true" showFooter="true" enableLazyLoading="false"
+				showTitleInHeaderContent="false">
+				<headerTitle>
+					<ObjectPageHeader objectTitle="{Name}"
+						isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false">
+					</ObjectPageHeader>
+				</headerTitle>
+				<sections>
+					<ObjectPageSection id="tne.pcEmp.pageSection"
+						title="{i18n>tne.pcEmp.lbl.Time}">
+						<subSections>
+							<ObjectPageSubSection id="tne.pcEmp.lbl.Time"
+								title=" ">
+								<blocks>
+									<m:Table id="tne.pcEmp.tbl_pcEmp_Time"
+										items="{path:'EmpReference/NavBaseTimePaycode/results'}"
+										noDataText="{i18n>tne.pcEmp.lbl.timeTblNoData}"><!-- items="{path:'EmpReference/NavBaseTimePaycode/results/' -->
+										<m:headerToolbar>
+											<m:Toolbar>
+												<!-- <m:Title text="Time" level="H2" /> -->
+												<m:Title
+													text=" Time ({path:'EmpReference/NavBaseTimePaycode/results/length'})"
+													level="H2" />
+												<m:ToolbarSpacer />
+												<m:Button text="Add New" icon="sap-icon://add"
+													press="addPaycodeDialogOpen" type="Emphasized" />
+											</m:Toolbar>
+										</m:headerToolbar>
+										<m:columns>
+											<m:Column>
+												<m:Text text="{i18n>tne.pcEmp.lbl.Paycode}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="6rem">
+												<m:Text text="{i18n>tne.pcEmp.lbl.Duration}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="7rem">
+												<m:Text text="{i18n>tne.pcEmp.lbl.stDate}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="6rem">
+												<m:Text text="{i18n>tne.pcEmp.lbl.stTime}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="6rem">
+												<m:Text text="{i18n>tne.pcEmp.lbl.endDate}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="4rem">
+												<m:Text text="{i18n>tne.pcEmp.lbl.endTime}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="12rem">
+												<m:Text text="{i18n>tne.pcEmp.lbl.otRsnCode}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="false"
+												width="3rem">
+											</m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem
+												visible="{
+														path: 'ActionFlag',
+														formatter:'.baseTimeRowVisibileFormatter'}">
+												<m:cells>
+
+													<m:Input id="tne.pcEmp.PaycodeHelp" type="Text"
+														valueHelpOnly="true" showValueHelp="true"
+														valueHelpRequest="onOpenChangeBaseTimePaycodePopUp" value="{Paycode} - {PaycodeRef/Description}"
+														enabled="{
+															path: 'EditAllowed',
+															formatter:'.baseTimeRowEditableFormatter'
+														}">
+													</m:Input>
+
+
+													<custom:TimePicker id="tne.pcEmp.dateTimeInput.Duration"
+														enabled="{
+															path: 'EditAllowed',
+															formatter:'.baseTimeRowEditableFormatter'
+														}"
+														dateValue="{path:'Duration'}" valueFormat="1970-01-01THH:mm"
+														displayFormat="HH:mm" change="handleTimeChange" />
+
+													<!-- <m:DatePicker id="tne.pcEmp.dateTimeInput.stDate" enabled="{ -->
+													<!-- path: 'EditAllowed', formatter:'.baseTimeRowEditableFormatter' 
+														}" dateValue="{path:'WorkDate'}" -->
+													<!-- displayFormat="MMM-dd-yy" /> -->
+													<m:ComboBox id="tne.pcEmp.dateTimeInput.stDate"
+														enabled="{ 
+															path: 'EditAllowed', 
+															formatter:'.baseTimeRowEditableFormatter' }"
+														items="{DateRef}" selectedKey='{StartDate}'
+														selectionChange="onDateSelctionInCombo" change="handleDateChange">
+														<m:items>
+															<core:Item key="{value}" text="{display}" />
+														</m:items>
+													</m:ComboBox>
+
+													<custom:TimePicker id="tne.pcEmp.dateTimeInput.stTime"
+														enabled="{
+															path: 'EditAllowed',
+															formatter:'.baseTimeRowEditableFormatter'
+														}"
+														dateValue="{path:'StEPOC'}" valueFormat="1970-01-01THH:mm"
+														displayFormat="HH:mm" change="handleTimeChange" />
+
+													<m:Input id="tne.pcEmp.dateTimeInput.endDate"
+														enabled="false"
+														value="{ path:'EndDate', type: 'sap.ui.model.type.Date', formatOptions: 
+														{pattern: 'MMM-dd'} }" />
+													<!-- <m:Input id="tne.pcEmp.dateTimeInput.endDate" enabled="false" 
+														value="{ parts:['WorkDate','StEPOC','Duration'], formatter: '.baseTimeEndDateFormatter', 
+														type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MMM-dd'} }" /> -->
+
+													<custom:TimePicker id="tne.pcEmp.dateTimeInput.endTime"
+														enabled="false" dateValue="{path:'EtEPOC'}" valueFormat="1970-01-01THH:mm"
+														displayFormat="HH:mm" />
+
+													<m:ComboBox id="tne.pcEmp.OTresCode" width="15rem"
+														items="{/selGang/valueHelp/OVReason}" selectedKey="{OTReasonCode}"
+														class="sapUiTinyMarginBegin" selectionChange="onExpChange"
+														enabled="{path: 'OTReasonCode', formatter: '.formatOTReasonEnabled'}">
+														<m:items>
+															<core:Item key="{Code}" text="{Code} - {Description}" />
+														</m:items>
+
+													</m:ComboBox><!-- value="{OVReasonRef/Code} - {OVReasonRef/Description}" -->
+
+													<m:Button icon="sap-icon://delete" type="Reject"
+														press="handleDeleteBaseTime"
+														visible="{
+														path: 'EditAllowed',
+														formatter:'.baseTimeRowEditableFormatter'}" />
+
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</blocks>
+
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+
+					<ObjectPageSection id="tne.pcEmp.Expense" title="{i18n>tne.pcEmp.Expense}"
+						importance="Medium">
+						<subSections>
+							<ObjectPageSubSection id="tne.pcEmp.expenseSelection"
+								title="{i18n>tne.pcEmp.lbl.Expense}">
+								<blocks>
+									<m:Table id="tne.pcEmp.tbl_pcEmp_Expense"
+										items="{path:'EmpReference/NavAdditiveDetail/results/'}"
+										noDataText="{i18n>tne.pcEmp.lbl.timeTblNoData}">
+										<m:headerToolbar>
+											<m:Toolbar>
+												<!-- <m:Title text="Expense" level="H2" /> -->
+												<m:Title
+													text=" Expense ({path:'EmpReference/NavAdditiveDetail/results/length'})"
+													level="H2" />
+												<m:ToolbarSpacer />
+												<m:Button text="Add New" icon="sap-icon://add"
+													type="Emphasized" press="handleAddNewExpense" />
+											</m:Toolbar>
+										</m:headerToolbar>
+										<m:columns>
+											<m:Column minScreenWidth="Tablet" demandPopin="true">
+												<m:Text text="{i18n>tne.pcEmp.lbl.Type}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="8rem">
+												<m:Text text="{i18n>tne.pcEmp.lbl.Unit}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="8rem">
+												<m:Text text="{i18n>tne.pcEmp.lbl.Amount}" />
+											</m:Column>
+
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem type="Navigation" press="handleLineItemPress"
+												visible="{
+														path: 'Action',
+														formatter:'.baseTimeRowVisibileFormatter'}">
+												<m:cells>
+													<m:Input id="tne.pcEmp.ExpenseHelp" type="Text"
+														editable="true" valueHelpOnly="false" enabled="true"
+														showValueHelp="true" valueHelpRequest="onOpenExpensePopUp"
+														value="{Paycode} - {ExpenseRef/Description}">
+														<!-- suggestionItems="{path: 'ExpenseTypeRef/Paycodes/'}" -->
+														<!-- <m:suggestionItems> <core:ListItem text="{code}" additionalText="{code} 
+															- {Description}" /> </m:suggestionItems> -->
+													</m:Input>
+													<m:Text text="Hours" />
+													<custom:TimePicker id="tne.pcEmp.dateTimeInput.ExpTime"
+														dateValue="{parts: ['Hours', 'Mins'], formatter: '.calExpTime'}"
+														valueFormat="1970-01-01THH:mm" displayFormat="HH:mm" />
+
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+				</sections>
+			</ObjectPageLayout>
+
+		</m:content>
+
+		<m:footer>
+			<m:Toolbar>
+				<m:ToolbarSpacer />
+				<m:Button text="{i18n>tne.pcEmp.lbl.save}" press="handlePCEmployeeSave"
+					icon="sap-icon://save" type="Accept" />
+				<m:Button text="{i18n>tne.app.Cancel}" press="onBack" type="Reject"
+					icon="sap-icon://decline" />
+			</m:Toolbar>
+		</m:footer>
+
+	</m:Page>
+</core:View>

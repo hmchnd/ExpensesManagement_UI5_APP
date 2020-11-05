@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog
+		title="{i18n>tne.dashMsg.dia.Header}{/MsgGrp}" contentWidth="800px" verticalScrolling="true">
+		<endButton>
+			<Button text="{i18n>tne.app.Ok}" press=".onMessagePreviewClose" type="Emphasized"/>
+		</endButton>
+		<content>
+			<l:VerticalLayout>	
+				<Title text="{i18n>tne.dashMsg.dia.Title} {/Subject}" titleStyle="H4"/>			
+				<ScrollContainer height="80%" width="100%" vertical="true">
+					<core:HTML content="{/Body}" />
+				</ScrollContainer>
+				<Label design="Bold" text="Sent On: {path: '/ValidFrom', formatter: 'com.bnsf.eam.tne.util.DateAndTimeConversion.getDateDisplayMMddyyyy'}"/>
+				<Label design="Bold" text="Valid Till: {path: '/ValidTo', formatter: 'com.bnsf.eam.tne.util.DateAndTimeConversion.getDateDisplayMMddyyyy'}"/>			
+				<CheckBox text="{i18n>tne.dashMsg.dia.chkbox}" enabled="false" selected="true" 
+						visible="{
+								path: '/Type',
+								formatter: '.formatMsgAck'
+								}"/>
+			</l:VerticalLayout>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

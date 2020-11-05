@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:custom="com.bnsf.tne.bnsfContols">
+	<Dialog title="{i18n>tne.pcEmp.title.Paycode}" contentWidth="50%">
+		<beginButton>
+			<Button text="{i18n>tne.app.Cancel}" press="handlecloseChangePaycodesDialog"
+				type="Reject" />
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>tne.app.Save}" press="handleSaveChangePaycodesDetails"
+				type="Accept" />
+		</endButton>
+		<content>
+			<f:SimpleForm id="onClickEdit" editable="true"
+				layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4">
+				<f:content>
+					<Label text="{i18n>tne.pcEmp.lbl.PaycodeType}" class="sapUiSmallMarginEnd" />
+					<ComboBox id="tne.pcEmp.frg.PaycodeType" width="15rem" selectionChange="onChangePaycodeType"
+						class="sapUiTinyMarginBegin" items="{path: '/'}">
+						<core:Item key="{Code}" text="{Code} - {Description}" />
+					</ComboBox>
+
+					<Label text="{i18n>tne.pcEmp.lbl.Paycodes}" class="sapUiSmallMarginEnd" />
+					<ComboBox id="tne.pcEmp.frg.Paycodes" width="15rem" onBeforeOpen="onBeforeOpen"
+						placeholder="Select PayCode" class="sapUiTinyMarginBegin" items="{path: '/'}">
+						<core:Item key="{Code}" text="{Code} - {Description}" />
+					</ComboBox>
+					
+					<Label id="tne.pcEmp.lbl.otRsnCode" text="{i18n>tne.pcEmp.lbl.otRsnCode}" class="sapUiSmallMarginEnd" visible="false"/>
+					<ComboBox id="tne.pcEmp.frag.OTRescode" width="15rem" visible="false"
+						placeholder="Select Overtime Reason" class="sapUiTinyMarginBegin" items="{path: '/'}">
+						<core:Item key="{Code}" text="{Code} - {Description}" />
+					</ComboBox>
+
+				</f:content>
+			</f:SimpleForm>
+
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

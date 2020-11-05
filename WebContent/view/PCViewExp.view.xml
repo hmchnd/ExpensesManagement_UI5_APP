@@ -1,0 +1,56 @@
+<core:View controllerName="com.bnsf.eam.tne.controller.PCViewExp"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:custom="com.bnsf.tne.bnsfContols">
+	<Page showNavButton="true" navButtonPress="onBack" title=" ">
+		<headerContent>
+			<l:VerticalLayout class="sapUiBreadcrumbsMarginContent"
+				width="100%">
+				<l:content>
+					<custom:Breadcrumbs currentLocationText="PC {/Paycode}">
+						<Link text="{path: '/GangId'}" press="navToDashMaster"/>
+						<Link text=" {path: '/WorkDate', formatter: 'com.bnsf.eam.tne.util.DateAndTimeConversion.workDateDisplayBreadcrumb'}" 
+							press="navToDashCalendar" /> 
+						<Link text=" Lineup" press="navToLineup" />
+						<Link text=" Activities" press="navToActivities" />
+						<Link text=" Paycodes" press="navToPaycodes" />
+						<Link text="{/EmpId}" press="onNavBack" />
+					</custom:Breadcrumbs>
+				</l:content>
+			</l:VerticalLayout>
+
+		</headerContent>
+
+		<content>
+			<f:SimpleForm id="onClickExpenseRow" editable="true"
+				layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2">
+				<f:content>
+					<Label text="{i18n>tne.pcViewExp.lbl.ExpType}" class="sapUiSmallMarginEnd" />
+					<ComboBox id="tne.pcViewExp.ExpType" width="15rem" items="{path: '/'}"
+						class="sapUiTinyMarginBegin" selectionChange="onExpChange">
+						<!-- <core:Item key="VHCL" text="VHCL" /> <core:Item key="DIFF" text="DIFF" 
+							/> <core:Item key="MEAL" text="MEAL" /> -->
+						<core:Item key="{Code}" text="{Code} - {Description}" />
+					</ComboBox>
+
+				</f:content>
+			</f:SimpleForm>
+
+			<Panel id="tne.pcViewExp.panel" width="auto" class="sapUiResponsiveMargin" />
+
+		</content>
+
+		<footer>
+
+			<Toolbar>
+				<Button text="{i18n>tne.pcViewExp.lbl.DelExp}" icon="sap-icon://delete"
+					type="Reject" press="handleDeleteExp"
+					visible="{path: '/Action', formatter: '.DeleteExpformatter'}" />
+				<ToolbarSpacer />
+				<Button text="{i18n>tne.pcViewExp.lbl.save}" press="handlePCViewExpSave"
+					icon="sap-icon://save" type="Accept" />
+				<Button text="{i18n>tne.app.Cancel}" press="handlePCViewExpCancel"
+					type="Reject" icon="sap-icon://decline" />
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

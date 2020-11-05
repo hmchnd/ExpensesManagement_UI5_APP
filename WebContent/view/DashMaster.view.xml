@@ -1,0 +1,76 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="com.bnsf.eam.tne.controller.DashMaster" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id='tne.dashMst.page' showHeader="false" backgroundDesign='Transparent' showFooter='true'>		
+		<content>
+			<Toolbar id="toolbarSearch">
+				<SearchField id="tne.dashMst.TxtBxSearchGang" liveChange="inLiveChange" search ="searchGang" placeholder="{i18n>tne.dashMst.lbl.PHSearch}" />		
+			</Toolbar>
+			<List id="tne.dashMst.LstGangs"  updateFinished="selectFirstEvent" 
+				class="bnsfListAlternateColor"
+				items="{
+					path: '/gangs',
+					sorter: {
+						path: 'UserRole',
+						group: true
+					},
+					groupHeaderFactory: '.groupGangs'	
+					}" 
+				
+				 >
+				<items> 
+					<ObjectListItem id="tne.dashMst.OLstItmGangs" title="{GangTitle}" 
+						
+						type = "{ path: 'Extension1',
+								formatter: '.gangListTypeFormatter'}"
+						press="dispayGangDetails">
+						<firstStatus>
+							<ObjectStatus icon="{
+												path: 'UnReadMessageCount',
+												formatter: '.gangListIconFormatter'
+							   				}"
+							   				state="{
+							 							path: 'UnReadMessageCount',
+							 					    	formatter:'.msgCountStateFormatter'
+							 					    }" >
+							</ObjectStatus>
+						</firstStatus>
+						<attributes>
+							<ObjectAttribute text="{
+							 							path: 'UnReadMessageCount',
+							 					    	formatter:'.msgCountFormatter'
+							 					    }" 
+							 				  />
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+			<ResponsivePopover id="tne.dashMst.oinputPopover" showHeader='false'
+				placement='Bottom' enableScrolling='true' contentWidth='20rem'
+				beginButton='saveBtn' endButton='cancelBtn'>
+				<content>
+					<FlexBox visible='true' height="2rem" width="100%"
+						justifyContent="Center" />
+					<Label text="{i18n>DBUserIdPop_Label}" class="labelHrs" />
+					<FlexBox visible='true' height="2rem" width="100%"
+						justifyContent="Center" />
+					<Input id="oTextFieldFrUId" value="CH71133" width="10rem"
+						class="labelHrs"></Input>
+					<FlexBox visible='true' height="2rem" width="100%"
+						justifyContent="Center" />
+					<Button type="Default" text="{i18n>tne.app.Ok}" enabled="true"
+						press="initializeAppFromPopup"
+						class="primaryButtonTextureStyle popoverFooterPrimaryBtnPositionStyle"></Button>
+					<Button type="Default" text="{i18n>DB_Clear}" press="clearField"
+						class="secondaryButtonTextureStyle popoverFooterSecondaryBtnPositionStyle"></Button>
+				</content>
+			</ResponsivePopover>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="{i18n>tne.dashMst.lbl.ftr.lblVideo}" icon="sap-icon://play" type="Transparent"/>
+				<Button text="{i18n>tne.dashMst.lbl.ftr.lblPDF}" icon="sap-icon://pdf-attachment" type="Transparent"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

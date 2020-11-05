@@ -1,0 +1,114 @@
+<mvc:View controllerName="com.bnsf.eam.tne.controller.Paycode"
+	xmlns="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:custom="com.bnsf.tne.bnsfContols"
+	xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core">
+	<m:Page showNavButton="true" navButtonPress="handlePageExit">
+		<m:headerContent>
+			<l:VerticalLayout class="sapUiBreadcrumbsMarginContent"
+				width="100%">
+				<l:content>
+					<custom:Breadcrumbs currentLocationText="Paycode">
+						<m:Link text="{path: '/selGang/id'}" press="navToDashMaster" />
+						<m:Link
+							text=" {path: '/selGang/workDate', 
+			formatter: 'com.bnsf.eam.tne.util.DateAndTimeConversion.workDateDisplayBreadcrumb'}"
+							press="navToDashCalendar" />
+						<m:Link text=" Lineup" press="navToLineup" />
+						<m:Link text=" Activities" press="navToActivities" />
+					</custom:Breadcrumbs>
+				</l:content>
+			</l:VerticalLayout>
+		</m:headerContent>
+		<m:content>
+			<TreeTable id="tne.paycode.TreeTable" selectionMode="MultiToggle"
+				visibleRowCountMode="Interactive" visibleRowCount="10"
+				minAutoRowCount="10" enableColumnReordering="false"
+				expandFirstLevel="false"
+				rows="{
+				path : '/selGang/pcTreeDisplay',
+				 	parameters: {arrayNames:['categories']}					 
+				}">
+				<toolbar>
+					<m:Toolbar>
+						<!-- <m:Title id="title" text="{i18n>tne.paycode.lbl.TableHeader}" 
+							/> -->
+						<m:Title id="title"
+							text=" People ({path:'/selGang/pcTreeDisplay/categories/length'})"
+							level="H2" />
+						<m:ToolbarSpacer />
+						<m:Button text="{i18n>tne.paycode.lbl.CollapseAllBtn}"
+							press="onCollapseAll" />
+						<m:Button text="{i18n>tne.paycode.lbl.ExpandAllBtn}"
+							press="onExpandAll" />
+						<m:Button text="{i18n>tne.paycode.lbl.ExpandFirstLevelBtn}"
+							press="onExpandFirstLevel" />
+					</m:Toolbar>
+				</toolbar>
+				<columns>
+
+					<Column>
+						<m:Label text="{i18n>tne.paycode.lbl.EmployeePaycode}" />
+						<template>
+							<m:Link text="{Name}" press="handleLinkPress"
+								enabled="{path: 'Level', formatter: '.treeTableLinkFormatter'}" />
+						</template>
+					</Column>
+
+					<Column>
+						<m:Label text="{i18n>tne.paycode.lbl.Total}" />
+						<template>
+							<m:Text text="{Total}" />
+							<m:Text
+								text="{
+											path:'Total', 
+											formatter: '.dateFormat' 
+									}" />
+						</template>
+					</Column>
+
+					<Column>
+						<m:Label text="{i18n>tne.paycode.lbl.RegularHrs}" />
+						<template>
+							<m:Text
+								text="{
+										path:'RegularHrs', 
+										formatter: '.dateFormat'
+							 	}" />
+						</template>
+					</Column>
+
+					<Column>
+						<m:Label text="{i18n>tne.paycode.lbl.OvertimeHrs}" />
+						<template>
+							<m:Text
+								text="{
+										path:'OvrTimeHrs', 
+										formatter: '.dateFormat' 
+								}" />
+						</template>
+					</Column>
+
+					<Column>
+						<m:Label text="{i18n>tne.paycode.lbl.ExpenseHdr}" />
+						<template>
+							<m:Text text="{Expense}" />
+						</template>
+					</Column>
+
+				</columns>
+
+			</TreeTable>
+		</m:content>
+		<m:footer>
+			<m:OverflowToolbar>
+				<m:Button text="{i18n>tne.paycode.lbl.AddExpense}" press="handleAddExpense"
+					icon="sap-icon://sales-document" type="Emphasized" />
+				<m:ToolbarSpacer />
+				<m:Button text="{i18n>tne.app.SaveDraft}" type="Emphasized"
+					icon="sap-icon://save" press="handleSaveDraft" />
+				<m:Button text="{i18n>tne.app.Next}" press="handleNext"
+					icon="sap-icon://navigation-right-arrow" type="Accept" />
+			</m:OverflowToolbar>
+		</m:footer>
+	</m:Page>
+</mvc:View>

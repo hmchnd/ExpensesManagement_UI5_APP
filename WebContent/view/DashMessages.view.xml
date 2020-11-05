@@ -1,0 +1,46 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:icon="sap.ui.core" controllerName="com.bnsf.eam.tne.controller.DashMessages"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Table id="tne.DashMsg.TableId" items="{path: '/0/NavMessages/results/'}" 
+		noDataText = "{i18n>tne.dashMsg.lbl.TblNoDataMessage}"
+		class="bnsfTableAlternateColor">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title id="tne.DashMsg.TabHdrTitle" level="H2">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Title>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="4rem">
+				<Text text="{i18n>tne.dashMsg.lbl.Status}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>tne.dashMsg.lbl.Messages}" />
+			</Column>
+			<Column width="6rem">
+				<Text text="{i18n>tne.dashMsg.lbl.SentOn}" />
+			</Column>
+		</columns>
+		<items>
+		<ColumnListItem type="Navigation" press=".callDialogMessagebox">
+			<cells>
+				<Icon xmlns="sap.ui.core" src="{
+												path: 'Read',
+												formatter: '.messageReadStatusIconFormatter'
+							   				}"/>
+				<ObjectIdentifier title="{Subject}" text="{Body}" />
+				<ObjectNumber number="{
+						path: 'ValidFrom',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: {
+							style: 'medium'
+						}
+					}"/> 
+			</cells>
+		</ColumnListItem>
+		</items>
+	</Table>
+</core:View>

@@ -1,0 +1,64 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:custom="com.bnsf.tne.bnsfContols">
+	<Dialog title="{i18n>tne.pcEmp.title.AddNPaycode}" contentWidth="50%">
+		<beginButton>
+
+			<Button text="{i18n>tne.app.Save}" press="addPaycodeDetails"
+				type="Accept" />
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>tne.app.Cancel}" press="_closePaycodeDialog"
+				type="Reject" />
+		</endButton>
+		<content>
+			<f:SimpleForm id="onAddTimePaycode" editable="true"
+				layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4">
+				<f:content>
+					<Label text="{i18n>tne.pcEmp.lbl.PaycodeType}" class="sapUiSmallMarginEnd" />
+					<ComboBox id="tne.pcEmp.frag.myPcType" width="15rem"
+						selectionChange="onChangeBasePaycodeType" class="sapUiTinyMarginBegin"
+						items="{path: '/'}" placeholder="Select Paycode Type">
+						<core:Item key="{Code}" text="{Code} - {Description}" />
+					</ComboBox>
+
+					<Label text="{i18n>tne.pcEmp.lbl.Paycode}" class="sapUiSmallMarginEnd" />
+					<ComboBox id="tne.pcEmp.frag.myPaycode" width="15rem"
+						class="sapUiTinyMarginBegin" items="{path: '/'}" placeholder="Select Paycode">
+						<core:Item key="{Code}" text="{Code} - {Description}" />
+					</ComboBox>
+					<Label id="tne.pcEmp.lbl.otRsnCode" text="{i18n>tne.pcEmp.lbl.otRsnCode}"
+						class="sapUiSmallMarginEnd" visible="false" />
+					<ComboBox id="tne.pcEmp.frag.myOtRescode" width="15rem"
+						visible="false" class="sapUiTinyMarginBegin" items="{path: '/'}"
+						placeholder="Select Overtime Reason">
+						<core:Item key="{Code}" text="{Code} - {Description}" />
+					</ComboBox>
+
+
+					<Label text="{i18n>tne.pcEmp.lbl.stTime}" class="sapUiSmallMarginEnd" />
+					<custom:TimePicker id="tne.pcEmp.frag.stTime"
+						width="8rem" class="sapUiTinyMarginBegin" dateValue=""
+						valueFormat="HH:mm" displayFormat="HH:mm" />
+
+					<Label text="{i18n>tne.pcEmp.lbl.stDate}" class="sapUiSmallMarginEnd" />
+					<!-- <DatePicker id="tne.pcEmp.frag.stDate" displayFormat="short" width="10rem" 
+						change="handleChange" class="sapUiTinyMarginBegin"/> -->
+					<ComboBox id="tne.pcEmp.dateTimeInput.stDate" items="{/selGang/valueHelp/DateRef}"
+						selectedKey="" width="10rem" placeholder="Select Date" >
+						<items>
+							<core:Item key="{value}" text="{display}" />
+						</items>
+					</ComboBox>
+
+					<Label text="{i18n>tne.pcEmp.lbl.Duration}" class="sapUiSmallMarginEnd" />
+					<custom:TimePicker id="tne.pcEmp.frag.Duration"
+						width="8rem" class="sapUiTinyMarginBegin" dateValue=""
+						valueFormat="HH:mm" displayFormat="HH:mm" />
+
+				</f:content>
+			</f:SimpleForm>
+
+
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

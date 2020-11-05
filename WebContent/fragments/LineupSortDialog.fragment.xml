@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="sortLineup">
+		<sortItems>
+			<ViewSettingsItem text="Pay Rate" key="payRate" selected="true" />
+			<ViewSettingsItem id = "empFName" text="First Name" key="empName" />
+			<ViewSettingsItem id = "empLName" text="Last Name" key="empName" />
+			<ViewSettingsItem text="Employee Number" key="empId" />
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

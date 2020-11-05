@@ -1,0 +1,241 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+			xmlns="sap.uxap" xmlns:custom="com.bnsf.tne.bnsfContols" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:m="sap.m"
+	xmlns:cor="sap.ui.core" controllerName="com.bnsf.eam.tne.controller.WorkDayDetails"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:Page id="tne.wrkDayDetail.page" showNavButton="true"
+		navButtonPress="navBackToActivity">
+		<m:content>
+			<ObjectPageLayout id="tne.wrkDayDetail.ObjectPageLayout"
+				isChildPage="true" showFooter="true" enableLazyLoading="false"
+				showTitleInHeaderContent="true" showEditHeaderButton="true"
+				editHeaderButtonPress="handleEditBtnPress">
+				<sections>
+				<ObjectPageSection
+						title="{i18n>tne.wrkDayDetail.title.WorkHoursDet}" importance="Medium">
+						<subSections>
+							<ObjectPageSubSection id="tne.wrkDayDetail.ActivityDetails">
+								<blocks>
+									<m:VBox class="sapUiSmallMargin">
+										<f:SimpleForm id="SimpleFormChange480" 
+											minWidth="1024"
+											maxContainerCols="2" 
+											editable="true" 
+											layout="ResponsiveGridLayout"
+											labelSpanL="2" 
+											labelSpanM="2" 
+											labelSpanS="4"
+											emptySpanL="0" 
+											emptySpanM="0"
+											emptySpanS="0"
+											columnsL="2" 
+											columnsM="2"
+											columnsS="1"  
+											class="editableForm">
+											<f:content>
+												<core:Title text="" />
+												<m:Label text="{i18n>tne.wrkDayDetail.lbl.WorkType}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" />
+													</m:layoutData>
+												</m:Label>
+												<m:ComboBox selectedKey="{/ActivityType}" id="tne.wrkDayDetails.activityType" 
+													selectionChange="enableOTReasonCode"
+													items="{
+														path:'/ActivityTypeRef'
+													}"
+													placeholder="Select Type" >
+													<core:Item key="{key}" text="{description}" />
+													<m:layoutData>
+														<l:GridData span="L10 M10 S10"/>
+													</m:layoutData>
+												</m:ComboBox>											
+																
+												<m:Label text="{i18n>tne.wrkDayDetail.lbl.SD}">
+													 <m:layoutData>
+														<l:GridData span="L2 M2 S2" linebreak="true"/>
+													</m:layoutData> 
+												</m:Label>
+		
+												<m:DatePicker id="DP4" dateValue="{/StartDate}" 
+													displayFormat="MMM-dd-yy" 
+													change="customChange_StartDate">
+													<m:layoutData>
+														<l:GridData span="L3 M3 S3"/>
+													</m:layoutData>
+												</m:DatePicker>
+													
+												<m:Label text="{i18n>tne.wrkDayDetail.lbl.ST}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" linebreak="true"/>
+													</m:layoutData>
+												</m:Label>	
+													
+												<custom:TimePicker id="tne.wrkDayDetail.ActHrs.st"
+													dateValue="{/StartTime}"	
+													change="customChange_StartTime"																						
+													width="7rem"  displayFormat="HH:mm">												
+												</custom:TimePicker>														
+													
+												<m:Label text="{i18n>tne.wrkDayDetail.lbl.OTCode}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" linebreak="true" />
+													</m:layoutData>
+												</m:Label>
+												
+												<m:ComboBox id="tne.wrkDayDetail.OTReasonCode" 
+														selectedKey="{/RcBefore}"
+														placeholder="Select Overtime Reason" 
+														enabled="false" 
+														items="{										                         
+										                         path:'/OVReasonRef'										                      
+										             	}">
+														<core:Item key="{Code}" text="{Code} - {Description}" />
+														<m:layoutData>
+															<l:GridData span="L10 M10 S10" />
+														</m:layoutData>
+												</m:ComboBox>
+												
+												<core:Title text="" />
+												
+												<m:Label>
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" linebreak="true"/>
+													</m:layoutData>	
+												</m:Label>
+												<m:Text>
+													<m:layoutData>
+														<l:GridData span="L10 M10 S10"/>
+													</m:layoutData>	
+												</m:Text>
+																							
+												<m:Label text="{i18n>tne.wrkDayDetail.lbl.ED}">																				
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" linebreak="true"/>
+													</m:layoutData>	
+												</m:Label>
+												<m:DatePicker id="DP5" dateValue="{/EndDate}"  
+													change="customChange_EndDate"
+													displayFormat="MMM-dd-yy"  >	
+													<m:layoutData>
+														<l:GridData span="L3 M3 S3"/>
+													</m:layoutData>														
+												</m:DatePicker>
+												
+												<m:Label text="{i18n>tne.wrkDayDetail.lbl.ET}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" linebreak="true"/>
+													</m:layoutData>												
+												</m:Label>
+												<custom:TimePicker id="tne.wrkDayDetail.ActHrs.et"
+													dateValue="{/EndTime}"	change="customChange_EndTime"									
+													width="7rem"  displayFormat="HH:mm"
+												/>
+												
+											</f:content>
+										</f:SimpleForm>
+									</m:VBox>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					
+					
+				<ObjectPageSection 
+						importance="Medium">
+						<subSections>
+							<ObjectPageSubSection title="{i18n>tne.actDetail.title.People}">
+								<blocks>
+									<m:Table id="tne.wrkDayDetails.pplTbl" items="{path:'/NavActivityPeople'}"
+										noDataText="">			
+											<m:headerToolbar>
+				<m:OverflowToolbar>
+					<m:Title id="tne.wrkDayDetail.pplTblHdrTitle" text="{i18n>tne.wrkDayDetail.lbl.PplTblHeaderLbl}"
+						level="H2">
+						<m:layoutData>
+							<m:OverflowToolbarLayoutData priority="NeverOverflow" />
+						</m:layoutData>
+					</m:Title>
+					<m:ToolbarSpacer></m:ToolbarSpacer>
+					<m:SearchField id="tne.wrkDayDetail.TxtBxSearchPpl"
+						liveChange="searchEmployee" search="searchEmployee"
+						selectOnFocus="false" placeholder="{i18n>tne.wrkDayDetail.lbl.PHSearch}">
+						<m:layoutData>
+							<m:OverflowToolbarLayoutData minWidth="100px"
+								maxWidth="300px" shrinkable="true" />
+						</m:layoutData>
+					</m:SearchField>
+					
+				</m:OverflowToolbar>
+			</m:headerToolbar>
+										<m:columns>
+											<m:Column width="3rem">
+												<m:CheckBox select="selectDeselect"/>
+											</m:Column>
+											<m:Column>
+												<m:Text text="{i18n>tne.wrkDayDetail.lbl.EmpId}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="7rem">
+												<m:Text text="{i18n>tne.wrkDayDetail.lbl.stDate}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.wrkDayDetail.lbl.stTime}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="7rem">
+												<m:Text text="{i18n>tne.wrkDayDetail.lbl.EndDate}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.wrkDayDetail.lbl.EndTime}" />
+											</m:Column>
+											
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem>
+												<m:cells>
+													<m:CheckBox selected="{Selected}"/>
+													<m:Text text="{EmployeeDisplayName}" />
+													<m:DatePicker id="DP6" dateValue="{StartDate}" displayFormat="MMM-dd-yy" />		
+													<custom:TimePicker id="tne.wrkDayDetail.StartTime"
+															dateValue="{StartTime}"
+														 	displayFormat="HH:mm" 
+													/>
+													<m:DatePicker id="DP7" dateValue="{EndDate}" displayFormat="MMM-dd-yy" />
+													<custom:TimePicker id="tne.wrkDayDetail.EndTime"
+														dateValue="{EndTime}"
+														displayFormat="HH:mm"/>
+													
+													
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>	
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					</sections>
+					</ObjectPageLayout>
+</m:content>
+<m:footer>
+			<m:Toolbar>
+			<m:Button text="{i18n>tne.wrkDayDetail.lbl.DelWrkHrs}" icon="sap-icon://delete" press="delRecords" />
+				<m:ToolbarSpacer />
+				<m:Button text="{i18n>tne.app.Save}" type="Accept" icon="sap-icon://save" press="saveActualHrs" />
+				<m:Button text="{i18n>tne.app.Cancel}" type="Reject" icon="sap-icon://decline" press="" />
+			</m:Toolbar>
+		</m:footer>
+</m:Page>
+</core:View>

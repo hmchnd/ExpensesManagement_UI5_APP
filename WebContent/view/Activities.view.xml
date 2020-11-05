@@ -1,0 +1,314 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	controllerName="com.bnsf.eam.tne.controller.Activities" xmlns="sap.uxap"
+	xmlns:l="sap.ui.layout" xmlns:custom="com.bnsf.tne.bnsfContols"
+	xmlns:layout="sap.ui.layout" xmlns:m="sap.m" xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:Page id="tne.Activities.page"
+		showNavButton = "true" navButtonPress = "handlePageExit">
+		<m:headerContent>
+			<l:VerticalLayout class="sapUiBreadcrumbsMarginContent" width="100%">
+				<l:content>
+					<custom:Breadcrumbs currentLocationText="{i18n>tne.activities.lbl.PageTitle}">
+						<m:Link text="{path: '/selGang/id'}" press="navToDashMaster"/>
+						<m:Link text="{path: '/selGang/workDate', formatter: 'com.bnsf.eam.tne.util.DateAndTimeConversion.workDateDisplayBreadcrumb'}" press="navToDashCalendar"/>
+						<m:Link text="{i18n>tne.lineup.lbl.PageTitle}" press="navToLineup"/>
+					</custom:Breadcrumbs>
+				</l:content>
+			</l:VerticalLayout>
+		</m:headerContent>
+		<m:content>
+			<ObjectPageLayout id="tne.Activities.ObjectPageLayout"
+				isChildPage="true" showFooter="true" enableLazyLoading="false"
+				showTitleInHeaderContent="true" showEditHeaderButton="true"
+				editHeaderButtonPress="handleEditBtnPress">
+				<headerTitle>
+					<ObjectPageHeader objectTitle="{/selGang/id}"
+						isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true"
+						isObjectSubtitleAlwaysVisible="true">
+					</ObjectPageHeader>
+				</headerTitle>
+
+				<sections>
+
+
+					<ObjectPageSection id="tne.Activities.ActualHrs"
+						title="{i18n>tne.Activities.lbl.ActualHrs}" importance="Medium">
+						<subSections>
+							<ObjectPageSubSection title="{i18n>tne.Activities.lbl.ActualHrs}">
+								<blocks>
+									<m:Table id="tne.lineup.tbl_actualHrs"
+										items="{path:'/selGang/activitiesDisplay/actualHours'}"
+										noDataText="{i18n>tne.Activities.lbl.actualTblNoData}"
+										class="bnsfTableAlternateColor">
+											<m:headerToolbar>
+											<m:Toolbar>
+												<m:Title
+													text=" Actual Hours ({
+																path:'/selGang/activitiesDisplay/actualHours',
+																formatter:'com.bnsf.eam.tne.util.Validators.getPeopleCount'
+															})">
+												</m:Title>
+										<m:ToolbarSpacer></m:ToolbarSpacer>
+										<m:Button icon="sap-icon://add" text="Add New"
+													type="Emphasized" press="onAddNewWorkDetails" />
+										</m:Toolbar>
+										</m:headerToolbar>
+																			
+										<m:columns>
+											<m:Column vAlign="Middle">
+												<m:Text text="{i18n>tne.Activities.lbl.Type}" />
+											</m:Column>
+											<m:Column demandPopin="true"  width="6rem">
+												<m:Text text="{i18n>tne.Activities.lbl.StartDate}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.Activities.lbl.stTime}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.Activities.lbl.EndDate}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.Activities.lbl.EndTime}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="8rem" hAlign="Center" vAlign="Middle">
+												<m:Text text="{i18n>tne.Activities.lbl.Reason}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="3rem" hAlign="Center" vAlign="Middle">
+												<m:Text text="{i18n>tne.Activities.lbl.PeopleCount}" />
+											</m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem type="Navigation" press="handleItemPress_ActualHrs">
+												<m:cells>
+													<m:Text text="{TaskName}" />
+																									
+													<m:DatePicker id="DP1" dateValue= "{StartDate}" enabled="false" displayFormat="MMM-dd-yy">
+														<!-- dateValue="{
+															path:'StartDate',
+															formatter:'com.bnsf.eam.tne.util.DateAndTimeConversion.displayDateDDMM'													
+														}" -->
+														
+													</m:DatePicker>
+													
+													<custom:TimePicker id="tne.Activities.ActHrs.st"
+														dateValue="{
+														path:'StartTime/ms',
+														formatter:'com.bnsf.eam.tne.util.DateAndTimeConversion.viewConvertLocalTimeMilliSecToHHmm'}"
+														enabled="false" displayFormat="HH:mm" />
+																										
+													<m:DatePicker id="DP2" dateValue="{EndDate}" 	enabled="false"	
+														displayFormat="MMM-dd-yy">
+														<!-- dateValue="{
+															path:'EndDate',
+															formatter:'com.bnsf.eam.tne.util.DateAndTimeConversion.displayDateDDMM'													
+														}" -->
+													
+													</m:DatePicker>
+													<custom:TimePicker id="tne.Activities.ActHrs.et"
+														dateValue="{
+														path:'EndTime/ms',
+														formatter:'com.bnsf.eam.tne.util.DateAndTimeConversion.viewConvertLocalTimeMilliSecToHHmm'}"
+														enabled="false" displayFormat="HH:mm" />
+														
+													<m:Text text="{RcBefore}"/>
+
+													<m:Text
+														text="{
+															path:'NavActivityPeople',
+															formatter:'com.bnsf.eam.tne.util.Validators.getPeopleCount'
+														}"
+													/>
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+
+					<ObjectPageSection id="tne.Activities.Activities"
+						title="{i18n>tne.Activities.lbl.Activities}" importance="Medium">
+						<subSections>
+							<ObjectPageSubSection id="tne.Activities.activitySection"
+								title="{i18n>tne.Activities.lbl.Activities}">
+								<blocks>
+									<m:Table id="tne.activities.tbl_activity"
+										items="{path:'/selGang/activitiesDisplay/activities',
+												sorter:'TaskName'									
+												}"
+										noDataText="{i18n>tne.Activities.lbl.activityTblNoData}"
+										class="bnsfTableAlternateColor">
+										<m:headerToolbar>
+											<m:Toolbar>
+												<m:Title
+													text=" Activities ({
+																path:'/selGang/activitiesDisplay/activities',
+																formatter:'com.bnsf.eam.tne.util.Validators.getPeopleCount'
+															})">
+												</m:Title>
+										<m:ToolbarSpacer></m:ToolbarSpacer>
+										<m:Button icon="sap-icon://add" text="Add New"
+													type="Emphasized" press="onAddNewActivity" />
+										</m:Toolbar>
+										</m:headerToolbar>
+										<m:columns>
+											<m:Column vAlign="Middle">
+												<m:Text width="auto" text="{i18n>tne.Activities.lbl.Task}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="4rem"
+													hAlign="Center" vAlign="Middle">
+												<m:Text text="{i18n>tne.Activities.lbl.LS}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="5rem" hAlign="Center" vAlign="Middle">
+												<m:Text text="{i18n>tne.Activities.lbl.BMP}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="5rem" hAlign="Center" vAlign="Middle">
+												<m:Text text="{i18n>tne.Activities.lbl.EMP}" />
+											</m:Column>											
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="6rem">
+												<m:Text text="{i18n>tne.Activities.lbl.StartDate}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.Activities.lbl.stTime}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.Activities.lbl.EndDate}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.Activities.lbl.EndTime}" />
+											</m:Column>											
+											<m:Column minScreenWidth="Tablet" demandPopin="false"
+												hAlign="Center" vAlign="Middle" width="3rem">
+												<m:Text text="{i18n>tne.Activities.lbl.PeopleCount}" />
+											</m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem type="Navigation" press="handleLineItemPress">
+												<m:cells>
+													<m:Text width="auto" text="{TaskName}" />
+													<m:Text text="{LineSegment}" />
+													<m:Text text="{BMP}" />
+													<m:Text text="{EMP}" />
+													<m:DatePicker id="DP3" dateValue="{StartDate}" enabled="false"	
+														displayFormat="MMM-dd-yy">
+														<!-- dateValue="{
+															path:'StartDate',
+															formatter:'com.bnsf.eam.tne.util.DateAndTimeConversion.displayDateDDMM'													
+														}" -->
+														
+													</m:DatePicker>
+													<custom:TimePicker id="tne.Activities.Act.st"
+														dateValue="{
+															path:'StartTime/ms',
+															formatter:'com.bnsf.eam.tne.util.DateAndTimeConversion.viewConvertLocalTimeMilliSecToHHmm'
+														}"
+														enabled="false" valueFormat="HH:mm" displayFormat="HH:mm" />
+													<m:DatePicker id="DP4" dateValue="{EndDate}" 	enabled="false" displayFormat="MMM-dd-yy">
+													<!-- 	dateValue="{
+															path:'EndDate',
+															formatter:'com.bnsf.eam.tne.util.DateAndTimeConversion.displayDateDDMM'													
+														}" -->
+													
+													</m:DatePicker>
+													<custom:TimePicker id="tne.Activities.Act.et"
+														dateValue="{											
+															path:'EndTime/ms',
+															formatter:'com.bnsf.eam.tne.util.DateAndTimeConversion.viewConvertLocalTimeMilliSecToHHmm'
+														}"
+														enabled="false" 
+														valueFormat="HH:mm" displayFormat="HH:mm" />
+													<m:Text
+														text="{
+															path:'NavActivityPeople',
+															formatter:'com.bnsf.eam.tne.util.Validators.getPeopleCount'
+														}"/>
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					
+					
+			<ObjectPageSection id="tne.Activities.People"
+						title="{i18n>tne.Activities.lbl.People}" importance="Medium">
+						<subSections>
+							<ObjectPageSubSection id="tne.Activities.peopleSection"
+								title="{i18n>tne.Activities.lbl.People}">
+								<blocks>
+									<m:Table id="tne.activities.tbl_people"
+										items="{path:'/selGang/activitiesDisplay/people',
+												sorter:'EmpId'									
+												}"
+										noDataText="{i18n>tne.Activities.lbl.peopleTblNoData}"
+										class="bnsfTableAlternateColor">
+										<m:headerToolbar>
+											<m:Toolbar>
+												<m:Title
+													text=" People">
+												</m:Title>
+										
+										</m:Toolbar>
+										</m:headerToolbar>
+										<m:columns>
+											<m:Column vAlign="Middle">
+												<m:Text width="auto" text="{i18n>tne.Activities.lbl.Employee}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="4rem"
+													hAlign="Center" vAlign="Middle">
+												<m:Text text="{i18n>tne.Activities.lbl.ActivityCount}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true"
+												width="5rem" hAlign="Center" vAlign="Middle">
+												<m:Text text="{i18n>tne.Activities.lbl.ActivityOverlap}" />
+											</m:Column>
+											
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem type="Navigation" press="goToPeopleActPage">
+												<m:cells>
+													<m:Text width="auto" text="{EmployeeDisplayName}" />
+													<m:Text text="" />
+													<m:Text text="" />
+													
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>		
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				</sections>
+			</ObjectPageLayout>
+		</m:content>
+		<m:footer>
+			<m:Toolbar>
+				<m:ToolbarSpacer />
+				<m:Button text="{i18n>tne.app.SaveDraft}" type="Emphasized" icon="sap-icon://save" press="saveDraft_Activity" />
+				<m:Button text="{i18n>tne.app.Next}" type="Accept" icon="sap-icon://navigation-right-arrow" press="goNext" />
+			</m:Toolbar>
+		</m:footer>
+	</m:Page>
+</core:View>

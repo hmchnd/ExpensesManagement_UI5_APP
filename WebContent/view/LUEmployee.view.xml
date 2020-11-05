@@ -1,0 +1,128 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	controllerName="com.bnsf.eam.tne.controller.LUEmployee" xmlns="sap.uxap"
+	xmlns:custom="com.bnsf.tne.bnsfContols" xmlns:l="sap.ui.layout"
+	xmlns:layout="sap.ui.layout" xmlns:m="sap.m" xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:Page id="tne.lnupEmp.page"
+		showNavButton="true" navButtonPress=".onBack">
+		<m:headerContent>
+			<l:VerticalLayout class="sapUiBreadcrumbsMarginContent" width="100%">
+				<l:content>
+					<custom:Breadcrumbs currentLocationText="{empName}">
+						<m:Link text="{/selGang/id}" press="navToDashMaster"/>
+						<m:Link text="{path: '/selGang/workDate', formatter: 'com.bnsf.eam.tne.util.DateAndTimeConversion.workDateDisplayBreadcrumb'}" press="navToDashCalendar"/>
+						<m:Link text="{i18n>tne.lineup.lbl.PageTitle}" press="navToLineup"/>
+					</custom:Breadcrumbs>
+				</l:content>
+			</l:VerticalLayout>
+		</m:headerContent>
+		<m:content>
+			<ObjectPageLayout id="tne.lnupEmp.ObjectPageLayout"
+				isChildPage="true" showFooter="true" enableLazyLoading="false"
+				showTitleInHeaderContent="true" showEditHeaderButton="true"
+				editHeaderButtonPress="handleEditBtnPress">
+				<headerTitle>
+					<ObjectPageHeader objectImageURI="sap-icon://employee"
+						objectTitle="{empName}" objectImageShape="Circle" objectSubtitle="{positionName}"
+						isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true"
+						isObjectSubtitleAlwaysVisible="true">
+					</ObjectPageHeader>
+				</headerTitle>
+				<headerContent>
+					<layout:VerticalLayout>
+						<m:ObjectStatus text="{assignment}" />
+					</layout:VerticalLayout>
+				</headerContent>
+				<sections>
+					<ObjectPageSection id="tne.lnupEmp.pageSection"
+						title="{i18n>tne.lnupEmp.lbl.shiftDetails}">
+						<subSections>
+							<ObjectPageSubSection id="tne.lnupEmp.lbl.ShiftDetails"
+								title=" ">
+								<blocks>
+									<m:VBox>
+										<m:items>
+											<m:Label text="{i18n>tne.lnupEmp.lbl.EmpShiftTime}"
+												class="sapuiResponsiveMargin" />
+											<m:HBox>
+												<m:items>
+													<m:Label text="{i18n>tne.lnupEmp.lbl.stTime}" class="sapUiSmallMarginTop">
+													</m:Label>
+													<custom:TimePicker id="tne.lnupEmp.ShiftTime.st" class="sapUiMediumMarginBegin"
+														dateValue="{startTime}" width="6rem"
+														valueFormat="1970-01-01THH:mm" displayFormat="HH:mm" change=".onEmpStTimeChange"/>
+													<m:Label text="{i18n>tne.lnupEmp.lbl.EndTime}"
+														class=" sapUiLargeMarginBegin sapUiSmallMarginTop">
+													</m:Label>
+													<custom:TimePicker id="tne.lnupEmp.ShiftTime.et" class="sapUiMediumMarginBegin"
+														dateValue="{endTime}" width="6rem"
+														valueFormat="1970-01-01THH:mm" displayFormat="HH:mm" change=".onEmpEnTimeChange"/>
+												</m:items>
+											</m:HBox>
+										</m:items>
+									</m:VBox>
+
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+
+					<ObjectPageSection id="tne.lnupEmp.Absence"
+						title="{i18n>tne.lnupEmp.lbl.Absence}" importance="Medium">
+						<subSections>
+							<ObjectPageSubSection id="tne.lnupEmp.absenceSection"
+								title="{i18n>tne.lnupEmp.lbl.Absence}">
+								<blocks>
+									<m:Table id="tne.lineup.tbl_lineup" items="{path:'empReference/NavAbsentees/'}" noDataText="{i18n>tne.lineup.lbl.absTblNoData}">
+										<m:columns>
+											<m:Column>
+												<m:Text text="{i18n>tne.lnupEmp.lbl.Type}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.lnupEmp.lbl.stTime}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.lnupEmp.lbl.EndTime}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="false" width="4rem">
+											</m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem visible="{
+														path: 'Action',
+														formatter:'.absenteeRowVisibileFormatter'}">
+												<m:cells>
+													<m:Text text="{AbsentRef/Code} - {AbsentRef/Description}" /> 
+													<custom:TimePicker id="tne.lnupEmp.AbsTime.st"
+														dateValue="{StartDate}" editable="false"
+														valueFormat="HH:mm" displayFormat="HH:mm"/>
+													<custom:TimePicker id="tne.lnupEmp.AbsTime.et"
+														dateValue="{EndDate}" editable="false"
+														valueFormat="HH:mm" displayFormat="HH:mm"/>	
+													<m:Button icon="sap-icon://delete" type="Reject" press="deleteAbsentee" enabled="{Deletable}" />	
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+				</sections>
+			</ObjectPageLayout>
+			
+			
+		</m:content>
+		<m:footer>
+			<m:Toolbar>
+				<m:Button text="{i18n>tne.lnupEmp.lbl.AddAbsentee}" icon="sap-icon://create-leave-request"
+					press="addAbsenteeDialogOpen" type="Emphasized" />
+				<m:ToolbarSpacer />
+				<m:Button text="{i18n>tne.app.Cancel}" type="Reject" press=".onBack" />
+				<m:Button text="{i18n>tne.app.Save}" type="Accept" press=".onSave" />
+			</m:Toolbar>
+		</m:footer>
+	</m:Page>
+
+
+
+</core:View>

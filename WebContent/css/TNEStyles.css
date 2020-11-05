@@ -1,0 +1,756 @@
+/************* Used as style in Calendar Control ***************/
+.calendar {
+	background-color: transparent;
+	fill: black;
+}
+
+#cal {
+	float: left;
+}
+
+#currentCycle {
+	font-family: Segoe UI;
+	font-size: 1rem;
+	padding: .5rem;
+	color: white;
+}
+
+#back {
+	float: left;
+	vertical-align: middle;
+	padding-right: 3rem;
+	padding-top: 12.5rem;
+}
+
+#forward {
+	float: left;
+	vertical-align: middle;
+	padding-left: 3rem;
+	padding-top: 12.5rem;
+}
+
+.bnsf-calendar-backBtn {
+	font-size: 2rem;
+	color: #009de0;
+	background-color: Transparent;
+	background-repeat: no-repeat;
+	border: none;
+}
+
+.bnsf-calendar-fwdBtn {
+	font-size: 2rem;
+	color: #009de0;
+	background-color: Transparent;
+	background-repeat: no-repeat;
+	border: none;
+}
+
+.bnsf-calendar-scrollBtn-disabled {
+	color: grey;
+}
+
+.bnsf-calendar-scrollBtn-enabled {
+	color: white;
+}
+
+.headerCell {
+	fill: #808080;
+	stroke: white;
+	stroke-width: 2;
+}
+
+.headerText {
+	font-family: Segoe UI;
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.activeCell {
+	fill: #B8B8B8;
+	stroke: white;
+	stroke-width: 2;
+}
+
+.inactiveCell {
+	fill: transparent;
+	stroke: white;
+	stroke-width: 2;
+}
+
+.acceptedCell {
+	stroke: green;
+	stroke-width: 5px;
+}
+
+.rejectedCell {
+	stroke: red;
+	stroke-width: 5px;
+}
+
+.pendingCell {
+	stroke: yellow;
+	stroke-width: 5px;
+}
+
+.acceptedCellText {
+	font-family: Segoe UI;
+	font-size: 1rem;
+	/* 	fill: green; */
+	fill: black;
+}
+
+.rejectedCellText {
+	font-family: Segoe UI;
+	font-size: 1rem;
+	/* 	fill: red; */
+	fill: black;
+}
+
+.pendingCellText {
+	font-family: Segoe UI;
+	font-size: 1rem;
+	/* 	fill: yellow; */
+	fill: black;
+}
+
+.restCell {
+	stroke: green;
+	stroke-width: 0px;
+}
+
+.currentDayStyle {
+	stroke: Chartreuse;
+	stroke-width: 4;
+}
+
+.inactiveCellText {
+	font-family: Segoe UI;
+	font-size: 2rem;
+	fill: #505050;
+}
+
+.currentDayCellText {
+	font-family: Segoe UI;
+	font-size: 2rem;
+	fill: green;
+	cursor: pointer !important;
+}
+
+.activeCellText {
+	font-family: Segoe UI;
+	font-size: 2rem;
+	fill: black;
+	cursor: pointer !important;
+}
+
+.restCellText {
+	font-family: Segoe UI;
+	font-size: 2rem;
+	fill: white;
+	cursor: pointer !important;
+}
+
+#ID_CIRCLES {
+	fill: transparent;
+	stroke: green;
+	stroke-width: 0px;
+}
+
+#ID_TRIANGLES {
+	fill: transparent;
+	stroke: green;
+	stroke-width: 0px;
+}
+
+.legendText {
+	font-family: Segoe UI;
+	font-size: 1rem;
+	fill: #009de0;
+}
+
+#idCycleList {
+	background-color: transparent;
+	color: #FAFAFA;
+	border: none !important;
+}
+
+#idCycleList .sapMSltArrow {
+	color: #009de0 !important;
+	background: transparent !important;
+}
+
+#idCycleList .sapMSltLabel {
+	color: #009de0 !important;
+	font-size: 150%;
+}
+
+#idCycleList-input {
+	font-size: 1rem !important;
+	font-family: Segoe UI !important;
+}
+
+#idCycleList-icon {
+	background-color: transparent !important;
+	color: #FAFAFA;
+	padding-top: .7rem !important;
+	background-image: url(../images/ComboBoxArrow_hover.png);
+}
+/*********************** End of calendar Style ****************************/
+
+/* Time Picker */
+.sapMTimePicker .sapUiIcon {
+	color: #666666
+}
+
+.sapMTimePicker .sapUiIcon:hover {
+	background-color: rgba(222, 222, 222, 0.5)
+}
+
+.sapMTimePicker .sapUiIcon:focus {
+	background-color: rgba(222, 222, 222, 0.5);
+	outline: 1px dotted #ec4c17;
+	outline-offset: -1px
+}
+
+.sapMTimePicker .sapUiIcon:active {
+	background-color: #ee5e2f;
+	color: #ffffff;
+	outline: 1px dotted #ffffff
+}
+
+.sapMTimePicker.sapMTPInputActive .sapMInputBaseInner {
+	border: 1px solid #ee5e2f
+}
+
+.sapMTimePicker.sapMTPInputActive .sapUiIcon {
+	background-color: #ee5e2f;
+	color: #ffffff
+}
+
+.sapMTimePicker.sapMTPInputActive .sapUiIcon:hover {
+	background-color: rgba(222, 222, 222, 0.5);
+	color: #666666
+}
+
+.sapMTimePicker.sapMTPInputActive .sapUiIcon:focus {
+	background-color: rgba(222, 222, 222, 0.5)
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerLabel
+	{
+	font-size: 0.75rem;
+	color: #666666;
+	text-align: center;
+	vertical-align: middle
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem
+	{
+	background: #ee5e2f;
+	border: 1px solid #ffffff;
+	font-size: 0.875rem;
+	color: #ffffff;
+	text-align: center
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem:hover
+	{
+	background: #ee5e2f;
+	color: #ffffff
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem:active
+	{
+	background: #ee5e2f;
+	color: #ffffff
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem:focus
+	{
+	outline: 1px dotted #ffffff;
+	outline-offset: -3px
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTimePickerItem
+	{
+	background: #f2f2f2;
+	color: #000000
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTimePickerItem:hover
+	{
+	background: #d8d8d8
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTimePickerItem:active
+	{
+	background: #ee5e2f;
+	color: #ffffff
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTimePickerItem:focus
+	{
+	outline: 1px dotted #ec4c17;
+	outline-offset: -3px
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTPPickerSelectionFrame
+	{
+	border: 2px solid #ee5e2f
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTPPickerSelectionFrame:hover
+	{
+	border: 2px solid #ee5e2f
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTPPickerSelectionFrame:hover+ul>li.sapMTimePickerItem.sapMTimePickerItemSelected
+	{
+	background: #d8d8d8
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTPPickerSelectionFrame:active
+	{
+	border: 2px solid #ee5e2f
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTPPickerSelectionFrame:active+ul>li.sapMTimePickerItem.sapMTimePickerItemSelected
+	{
+	background: #ee5e2f;
+	color: #ffffff
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn:focus {
+	outline: none
+}
+
+.sap-phone {
+	
+}
+
+.sap-phone .sapMTimePicker .sapUiIcon {
+	color: #666666
+}
+
+.sap-phone .sapMTimePicker .sapUiIcon:focus {
+	background-color: rgba(222, 222, 222, 0.5);
+	outline: 1px dotted #ec4c17;
+	outline-offset: -1px
+}
+
+.sap-phone .sapMTimePicker .sapUiIcon:active {
+	background-color: #ee5e2f;
+	color: #ffffff;
+	outline: 1px dotted #ffffff
+}
+
+.sap-phone .sapMTimePicker.sapMTPInputActive .sapMInputBaseInner {
+	border: 1px solid #ee5e2f
+}
+
+.sap-phone .sapMTimePicker.sapMTPInputActive .sapUiIcon {
+	background-color: #ee5e2f;
+	color: #ffffff
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTimePickerContainerLabel
+	{
+	font-size: 0.875rem;
+	color: #ab218e
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerLabel
+	{
+	font-size: 0.75rem;
+	color: #666666;
+	text-align: center;
+	vertical-align: middle
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem
+	{
+	background: #ee5e2f;
+	border: 1px solid #ffffff;
+	font-size: 0.875rem;
+	color: #ffffff;
+	text-align: center
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem:active
+	{
+	background: #ee5e2f;
+	color: #ffffff
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem:focus
+	{
+	outline: 1px dotted #ffffff;
+	outline-offset: -3px
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTimePickerItem
+	{
+	background: #f2f2f2;
+	color: #000000
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTimePickerItem:focus
+	{
+	outline: 1px dotted #ec4c17;
+	outline-offset: -3px
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTPPickerSelectionFrame
+	{
+	border: 2px solid #ee5e2f
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn:focus
+	{
+	outline: none
+}
+
+.sapMTimePicker .sapUiIcon {
+	cursor: pointer
+}
+
+.sapMTimePickerDropDown {
+	overflow: hidden !important;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer {
+	height: 100%;
+	min-width: 16rem;
+	box-sizing: border-box;
+	padding: 1rem;
+	text-align: center
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTimePickerContainerLabel
+	{
+	display: none;
+	box-sizing: border-box
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn {
+	display: inline-block;
+	overflow: hidden;
+	height: 3rem;
+	vertical-align: middle;
+	text-align: center;
+	box-sizing: border-box;
+	cursor: pointer
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerLabel
+	{
+	display: none;
+	box-sizing: border-box;
+	height: 2rem;
+	line-height: 2rem;
+	width: 4.5rem;
+	text-align: center
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerItemArrows
+	{
+	display: none;
+	box-sizing: border-box
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider
+	{
+	overflow: hidden;
+	height: 100%;
+	box-sizing: border-box
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem
+	{
+	height: 3rem;
+	line-height: 3rem;
+	width: 4.5rem;
+	box-sizing: border-box
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTPPickerSelectionFrame
+	{
+	width: 4.5rem;
+	height: 3rem;
+	position: absolute;
+	box-sizing: border-box;
+	display: none
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider>ul
+	{
+	list-style: none;
+	margin: 0;
+	padding: 0
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded
+	{
+	height: 100%;
+	cursor: default;
+	margin: 0
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerLabel
+	{
+	display: block
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerItemArrows
+	{
+	display: none
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider
+	{
+	height: calc(98%)
+}
+
+.sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTPPickerSelectionFrame
+	{
+	display: block
+}
+
+.sapUiSizeCompact .sapMTimePickerDropDown .sapMTimePickerContainer {
+	min-width: 17rem;
+	padding: 0.5rem;
+	margin: auto
+}
+
+.sapUiSizeCompact .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn
+	{
+	height: 2rem
+}
+
+.sapUiSizeCompact .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerLabel
+	{
+	width: 4rem
+}
+
+.sapUiSizeCompact .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem
+	{
+	height: 2rem;
+	line-height: 2rem;
+	width: 4rem;
+	box-sizing: border-box
+}
+
+.sapUiSizeCompact .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTPPickerSelectionFrame
+	{
+	width: 4rem;
+	height: 2rem
+}
+
+.sapUiSizeCompact .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded
+	{
+	height: 100%;
+	cursor: default;
+	margin: 0
+}
+
+.sapUiSizeCompact .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerItemArrows
+	{
+	display: block
+}
+
+.sapUiSizeCompact .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider
+	{
+	height: calc(100% - 6rem)
+}
+
+.sap-phone .sapMTimePickerDropDown {
+	
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMDialogScrollCont {
+	display: flex;
+	height: 100%;
+	padding: 0
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer {
+	max-height: 38rem;
+	height: 100%;
+	padding: 1rem;
+	box-sizing: border-box;
+	margin: auto;
+	text-align: center
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	margin-right: -0.25rem;
+	vertical-align: middle
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTimePickerContainerLabel
+	{
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, 0);
+	display: block;
+	height: 2rem;
+	line-height: 2rem
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn
+	{
+	display: inline-block;
+	height: 3rem;
+	text-align: center;
+	overflow: hidden;
+	cursor: pointer;
+	vertical-align: middle;
+	box-sizing: border-box
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerLabel
+	{
+	height: 2rem;
+	width: 4.5rem;
+	text-align: center;
+	vertical-align: middle;
+	display: none
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerItemArrows
+	{
+	display: none
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider
+	{
+	height: 100%;
+	max-height: 100%;
+	overflow: hidden
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem
+	{
+	height: 3rem;
+	line-height: 3rem;
+	width: 4.5rem;
+	box-sizing: border-box
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTPPickerSelectionFrame
+	{
+	width: 4.5rem;
+	height: 3rem;
+	position: absolute;
+	display: none;
+	box-sizing: border-box
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded
+	{
+	height: 100%;
+	cursor: default
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerLabel
+	{
+	display: block
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerItemArrows
+	{
+	display: none
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider
+	{
+	height: calc(98%);
+	max-height: 100%;
+	overflow: hidden
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTimePickerItem
+	{
+	height: 3rem;
+	line-height: 3rem;
+	width: 4.5rem;
+	box-sizing: border-box
+}
+
+.sap-phone .sapMTimePickerDropDown .sapMTimePickerContainer .sapMTPColumn.sapMTPSliderExpanded .sapMTimePickerSlider .sapMTPPickerSelectionFrame
+	{
+	display: block
+}
+
+/****************************End Cuetom Time Picker*******************************************/
+
+/****************************Start Breadcrumbs******************************************/
+.sapMBreadcrumbsCurrentLocation:focus, .sapMSlt:focus {
+	outline: 1px dotted #ee5e2f;
+	outline-offset: -1px;
+}
+
+.sapUiBreadcrumbsMarginContent {
+	margin-right: 3rem !important;
+}
+
+.sapMText {
+	margin-bottom: -3px !important;
+}
+
+.sapMSlt {
+	background-color: transparent;
+}
+
+.sapMSltPressed>.sapMSltIcon:before {
+	color: #666666;
+}
+
+.sapMSltIconOnly.sapMSltHoverable:hover, .sapMSltPressed.sapMSltIconOnly:not
+	(.sapMSltDisabled ), .sapMSltPressed:not (.sapMSltDisabled ),
+	.sapMSltIconOnly.sapMSltPressed.sapMSltHoverable:hover, .sapMSlt,
+	.sapMSlt.sapMSltIconOnly.sapMSltHoverable:hover {
+	background: transparent;
+	border: none;
+}
+
+.sapMBreadcrumbs {
+	margin: 0 0 0.5rem 0;
+	padding: 0;
+	white-space: nowrap;
+	list-style-type: none;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	outline: none;
+}
+
+.sapMBreadcrumbs .sapMBreadcrumbsItem {
+	display: inline;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	white-space: nowrap;
+	flex-shrink: 0;
+	color: #666666;
+}
+
+/****************************End Breadcrumbs********************************************/

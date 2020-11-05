@@ -1,0 +1,79 @@
+<core:View controllerName="com.bnsf.eam.tne.controller.TimeResults"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m" xmlns:custom="com.bnsf.tne.bnsfContols" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showNavButton="true" navButtonPress="handlePageExit">
+		<headerContent>
+			<l:VerticalLayout class="sapUiBreadcrumbsMarginContent"
+				width="100%">
+				<l:content>
+					<custom:Breadcrumbs currentLocationText=" Results">
+						<Link text=" {path: '/selGang/id'}" press="navToDashMaster" />
+						<Link
+							text=" {path: '/selGang/workDate', 
+			formatter: 'com.bnsf.eam.tne.util.DateAndTimeConversion.workDateDisplayBreadcrumb'}"
+							press="navToDashCalendar" />
+						<Link text=" Lineup" press="navToLineup" />
+						<Link text=" Activities" press="navToActivities" />
+						<Link text=" Paycodes" press="onNavBack" />
+					</custom:Breadcrumbs>
+				</l:content>
+			</l:VerticalLayout>
+
+		</headerContent>
+		<content>
+
+			<Table id="tne.timeResults.tbl_results" items="{path: '/selGang/TimeResults/'}"
+				noDataText="{i18n>tne.pcEmp.lbl.timeTblNoData}">
+				<headerToolbar>
+					<Toolbar>
+						<Title
+							text=" Results ({path:'/selGang/TimeResults',
+								formatter:'com.bnsf.eam.tne.util.Validators.getPeopleCount' })"
+							level="H2" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+						<Text text="{i18n>tne.timeResults.lbl.EmpId}" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>tne.timeResults.lbl.Message}" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+						<Text text="{i18n>tne.timeResults.lbl.Result}" />
+					</Column>
+
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="handleResultsItemPress">
+						<cells>
+							<Text text="" />
+							<Text text="{Message}" maxLines="1" wrapping="false" />
+							<core:Icon
+								src="{path:'MsgType', formatter:'.TimeResultsIconFormatter'}"
+								class="size2"
+								color="{path:'MsgType', formatter:'.TimeResultsIconColorFormatter'}" />
+							<!-- src="sap-icon://syringe" -->
+
+							<!-- <Button icon="sap-icon://delete" type="{path:'MsgType', formatter:'.baseTimeRowVisibileFormatter'}" 
+								press="handleDeleteBaseTime" /> -->
+
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+		</content>
+
+		<footer>
+			<Toolbar>
+
+				<ToolbarSpacer />
+				<Button text="{i18n>tne.app.SubmitAnother}" press="handleSubmitAnother"
+					type="Emphasized" />
+			</Toolbar>
+		</footer>
+	</Page>
+
+</core:View>

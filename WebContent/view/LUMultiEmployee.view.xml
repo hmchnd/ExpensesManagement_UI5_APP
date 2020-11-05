@@ -1,0 +1,130 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap" xmlns:m="sap.m" xmlns:custom="com.bnsf.tne.bnsfContols"
+	xmlns:layout="sap.ui.layout" controllerName="com.bnsf.eam.tne.controller.LUMultiEmployee"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:Page id="tne.lunpMultiEmp.page" title="{/selGang/id}"
+		showNavButton="true" navButtonPress="navBackToLineUp">
+		<m:content>
+			<ObjectPageLayout id="tne.lunpMultiEmp.ObjectPageLayout"
+				isChildPage="true" showFooter="true" enableLazyLoading="false"
+				showTitleInHeaderContent="true" showEditHeaderButton="true"
+				editHeaderButtonPress="handleEditBtnPress">
+				<headerTitle>
+					<ObjectPageHeader objectImageURI="sap-icon://employee"
+						objectTitle="{i18n>tne.lunpMultiEmp.title.SEditFollowEmp}" objectImageShape="Circle"
+						isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true"
+						isObjectSubtitleAlwaysVisible="true">
+					</ObjectPageHeader>
+				</headerTitle>
+				<headerContent>
+					<layout:VerticalLayout>
+						<m:Tokenizer id="tne.lunpMultiEmp.tokenizer" width="100%" type="Removed" 
+							tokens="{
+                                        path: '/selectedEmp'                                        
+                                  }">
+							<m:Token key="{empName}" text="{empName}" delete="_deleteToken"/>
+						</m:Tokenizer>
+
+					</layout:VerticalLayout>
+				</headerContent>
+				<sections>
+
+
+					<ObjectPageSection id="tne.lunpMultiEmp.Employee"
+						title="{i18n>tne.lunpMultiEmp.lbl.ShiftDet}" importance="Medium">
+						<subSections>
+							<ObjectPageSubSection id="tne.lunpMultiEmp.Shifttime"
+								title="{i18n>tne.lunpMultiEmp.lbl.ShiftDet}">
+								<blocks>
+									<m:VBox>
+										<m:items>
+											<m:Label text="{i18n>tne.lunpMultiEmp.lbl.EmpShiftTime}"
+												class="sapuiResponsiveMargin" />
+											<m:HBox>
+												<m:items>
+													<m:Label text="{i18n>tne.lunpMultiEmp.lbl.stTime}" class="sapUiSmallMarginTop">
+													</m:Label>
+													<custom:TimePicker id="tne.lunpMultiEmp.ShiftTime.st" class="sapUiMediumMarginBegin"
+														dateValue="{/startTime}" width="6rem" enabled="false"
+														valueFormat="HH:mm" displayFormat="HH:mm"/>
+													<m:Label text="{i18n>tne.lunpMultiEmp.lbl.EndTime}"
+														class=" sapUiLargeMarginBegin sapUiSmallMarginTop">
+													</m:Label>
+													<custom:TimePicker id="tne.lunpMultiEmp.ShiftTime.et" class="sapUiMediumMarginBegin"
+														dateValue="{/endTime}" width="6rem" enabled="false"
+														valueFormat="HH:mm" displayFormat="HH:mm"/>
+												</m:items>
+											</m:HBox>
+										</m:items>
+									</m:VBox>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+		<ObjectPageSection id="tne.lunpMultiEmp.Absence"
+						title="{i18n>tne.lunpMultiEmp.lbl.Absence}" importance="Medium">
+						<subSections>
+							<ObjectPageSubSection id="tne.lunpMultiEmp.absenceSection"
+								title="{i18n>tne.lunpMultiEmp.lbl.Absence}">
+								<blocks>
+									<m:Table id="tne.lunpMultiEmp.tbl_lineup" items="{path:'/absentees/'}" noDataText="{i18n>tne.lunpMultiEmp.lbl.absTblNoData}">
+										<m:columns>
+											<m:Column>
+												<m:Text text="{i18n>tne.lunpMultiEmp.lbl.Type}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.lunpMultiEmp.lbl.stTime}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.lunpMultiEmp.lbl.EndTime}" />
+											</m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="false" width="4rem">
+											</m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem>
+												<m:cells>
+													<m:Text text="{AbsenteeType} - {AbsentRef/Description}" /> 
+													<custom:TimePicker id="tne.lunpMultiEmp.AbsTime.st"
+														dateValue="{StartDate}"
+														valueFormat="HH:mm" displayFormat="HH:mm"/>
+													<custom:TimePicker id="tne.lunpMultiEmp.AbsTime.et"
+														dateValue="{EndDate}"
+														valueFormat="HH:mm" displayFormat="HH:mm"/>	
+													<m:Button icon="sap-icon://delete" press="_deleteAbsentee" type="Reject"/>	
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				</sections>
+			</ObjectPageLayout>
+
+
+		</m:content>
+		<m:footer>
+			<m:Toolbar>
+			<m:Button text="{i18n>tne.lnupEmp.lbl.AddAbsentee}" icon="sap-icon://create-leave-request"
+					press="addAbsenteeDialogOpen" type="Emphasized" />
+				<m:ToolbarSpacer />				
+				<m:Button text="{i18n>tne.app.Cancel}" press="_onCancel" type="Reject"
+					 />
+				<m:Button text="{i18n>tne.app.Save}" press="_onSave" type="Accept"
+					/>
+			</m:Toolbar>
+		</m:footer>
+	</m:Page>
+</core:View>

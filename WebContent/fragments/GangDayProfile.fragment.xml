@@ -1,0 +1,93 @@
+<core:FragmentDefinition
+   xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:custom="com.bnsf.tne.bnsfContols"
+   xmlns:core="sap.ui.core" >
+   <Dialog
+      title="Gang Profile " contentHeight="500px" contentWidth="450px"   >
+      
+      <beginButton>
+			<Button text="{i18n>tne.app.Cancel}" press="closeGangProfileDialog" />
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>tne.app.Save}" press="saveGangProfileData" />
+		</endButton>
+		<content>
+			<l:Grid
+				
+				class="sapUiSmallMarginTop"
+				hSpacing="2"
+				defaultSpan="L6 M6 S10">
+				<l:content>
+					<HBox>
+				<Label text="Hours" class="sapUiSmallMarginTop"></Label>	
+				<RadioButton id="tne.gangDay.frag.8hr" select="selectRadioBtn8hrsGroup"></RadioButton>	
+				<Text text="8 Hours" class="sapUiSmallMarginTop"></Text>					
+						<layoutData>
+							<l:GridData
+								span="L6 M6 S6"
+								 />
+						</layoutData>
+					</HBox>
+					<HBox>
+				<RadioButton id="tne.gangDay.frag.10hr" select="selectRadioBtn10hrsGroup"></RadioButton>	
+					<Text text="10 Hours" class="sapUiSmallMarginTop"></Text>
+						
+							<layoutData>
+								<l:GridData
+									span="L6 M6 S6"
+									 />
+							</layoutData>
+						</HBox>
+						<HBox>
+						<Label text="Start" class="sapUiMediumMarginTop" />
+						<custom:TimePicker id="tne.lnupEmp.frag.startTime" 
+							class=" sapUiSmallMarginTop sapUiMediumMarginBegin" dateValue="{/selGang/dayGangProfile/LocalStartTime}" 
+							width="6rem" valueFormat="HH:mm" displayFormat="HH:mm"/>
+						<layoutData>
+							<l:GridData
+								span="L6 M6 S6"
+								 />
+						</layoutData>
+					</HBox>
+					<HBox>
+						<Label text="End" class="sapUiMediumMarginTop" />
+						<custom:TimePicker id="tne.lnupEmp.frag.EndTime" 
+							class=" sapUiSmallMarginTop sapUiMediumMarginBegin" dateValue="{/selGang/dayGangProfile/LocalEndTime}" 
+							width="6rem" valueFormat="HH:mm" displayFormat="HH:mm"/>
+						<layoutData>
+								<l:GridData span="L6 M6 S6"/>
+						</layoutData>
+					</HBox>				
+					<VBox>
+						<Text text="Rest Days"/>
+						<RadioButtonGroup id="tne.gangDay.frag.8hrsGroup">
+							<buttons>
+								<RadioButton  text="Sunday|Monday"/>
+								<RadioButton  text="Monday|Tuesday"/>
+								<RadioButton  text="Tuesday|Wednesday"/>
+								<RadioButton  text="Wednesday|Thursday"/>
+								<RadioButton  text="Thursday|Friday"/>
+								<RadioButton  text="Friday|Saturday"/>
+								<RadioButton  text="Saturday|Sunday"/>
+							</buttons>
+						</RadioButtonGroup>		
+						<RadioButtonGroup id="tne.gangDay.frag.10hrsGroup">
+							<buttons>
+								<RadioButton  text="Sunday|Monday|Tuesday"/>
+								<RadioButton  text="Monday|Tuesday|Wednesday"/>
+								<RadioButton  text="Tuesday|Wednesday|Thursday"/>
+								<RadioButton  text="Wednesday|Thursday|Friday"/>
+								<RadioButton  text="Thursday|Friday|Saturday"/>
+								<RadioButton  text="Friday|Saturday|Sunday"/>
+								<RadioButton  text="Saturday|Sunday|Monday"/>					
+							</buttons>
+						</RadioButtonGroup>
+					
+						<layoutData>
+							<l:GridData span="L8 M8 S8"/>
+						</layoutData>
+					</VBox>			
+				</l:content>
+			</l:Grid>		
+		</content>
+   </Dialog>
+</core:FragmentDefinition>

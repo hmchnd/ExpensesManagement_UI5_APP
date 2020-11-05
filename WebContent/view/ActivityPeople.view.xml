@@ -1,0 +1,104 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+			xmlns="sap.uxap" xmlns:custom="com.bnsf.tne.bnsfContols" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:m="sap.m"
+	xmlns:cor="sap.ui.core" controllerName="com.bnsf.eam.tne.controller.ActivityPeople"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:Page id="tne.actPeople.page" showNavButton="true"
+		navButtonPress="onNavBack">
+		<m:content>
+			<ObjectPageLayout id="tne.actPeople.ObjectPageLayout"
+				isChildPage="true" showFooter="true" enableLazyLoading="false"
+				showTitleInHeaderContent="true" showEditHeaderButton="true"
+				editHeaderButtonPress="onNavBack">
+				<sections>				
+					
+					
+				<ObjectPageSection  
+						importance="Medium">
+						<subSections>
+							<ObjectPageSubSection title="{i18n>tne.actPeople.title.People}">
+								<blocks>
+									<m:Table id="tne.actPeoples.pplTbl" items="{path:'/NavActivityPeople'}"
+										noDataText="">			
+											<m:headerToolbar>
+				<m:OverflowToolbar>
+					<m:Title id="tne.actPeople.pplTblHdrTitle" text="{i18n>tne.actPeople.lbl.PplActivities}"
+						level="H2">
+						<m:layoutData>
+							<m:OverflowToolbarLayoutData priority="NeverOverflow" />
+						</m:layoutData>
+					</m:Title>
+				
+					
+					
+				</m:OverflowToolbar>
+			</m:headerToolbar>
+										<m:columns>
+											
+											<m:Column>
+												<m:Text text="{i18n>tne.actPeople.lbl.TaskName}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="7rem">
+												<m:Text text="{i18n>tne.actPeople.lbl.stDate}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.actPeople.lbl.stTime}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="7rem">
+												<m:Text text="{i18n>tne.actPeople.lbl.EndDate}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.actPeople.lbl.EndTime}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.actPeople.lbl.actOverlap}" />
+											</m:Column>
+											
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem>
+												<m:cells>
+													
+													<m:Text text="{EmployeeDisplayName}" />
+													<m:DatePicker id="DP6" dateValue="{StartDate}" displayFormat="MMM-dd-yy" />		
+													<custom:TimePicker id="tne.actPeople.StartTime"
+															dateValue="{StartTime}"
+														 	displayFormat="HH:mm" 
+													/>
+													<m:DatePicker id="DP7" dateValue="{EndDate}" displayFormat="MMM-dd-yy" />
+													<custom:TimePicker id="tne.actPeople.EndTime"
+														dateValue="{EndTime}"
+														displayFormat="HH:mm"/>
+													<m:Text></m:Text>
+													
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>	
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					</sections>
+					</ObjectPageLayout>
+</m:content>
+<m:footer>
+			<m:Toolbar>
+			
+			</m:Toolbar>
+		</m:footer>
+</m:Page>
+</core:View>

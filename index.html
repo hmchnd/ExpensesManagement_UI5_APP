@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Time and Expense</title>
+
+		<script src="resources/sap-ui-core.js"
+				id="sap-ui-bootstrap"
+				data-sap-ui-libs="sap.m"
+				data-sap-ui-theme="sap_bluecrystal"
+				data-sap-ui-compatVersion="edge"
+				data-sap-ui-resourceroots='{"com.bnsf.eam.tne": "."}'>
+		</script>
+		<!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
+
+		<script>
+		jQuery.sap.require("com.bnsf.eam.tne.util.Constants");
+		
+		//insert applicatoin css with Applicaion version to prevent caching of CSS
+		document.write('<link rel="stylesheet" type="text/css" href="css/TNEStyles.css?v='+ com.bnsf.eam.tne.util.Constants.PRD_APP_VERSION +'">');
+		
+		jQuery.sap.require("sap.ui.core.IconPool");
+		jQuery.sap.require("sap.ui.core.Icon");
+		jQuery.sap.require("sap.m.MessageBox");
+		jQuery.sap.require("jquery.sap.strings"); //Load the plugin to use 'jQuery.sap.startsWithIgnoreCase'
+		
+		//load util classes
+		jQuery.sap.registerModulePath("com.bnsf.eam.tne.util.DateAndTimeConversion", "util/DateAndTimeConversion");
+		jQuery.sap.require("com.bnsf.eam.tne.util.DateAndTimeConversion");
+		jQuery.sap.registerModulePath("com.bnsf.eam.tne.util.UserNameFormatter", "util/UserNameFormatter");
+		jQuery.sap.require("com.bnsf.eam.tne.util.UserNameFormatter");
+		jQuery.sap.registerModulePath("com.bnsf.eam.tne.util.ServiceErrorHandler", "util/ServiceErrorHandler");
+		jQuery.sap.require("com.bnsf.eam.tne.util.ServiceErrorHandler");
+		jQuery.sap.registerModulePath("com.bnsf.eam.tne.util.FetchValueHelps", "util/FetchValueHelps");
+		jQuery.sap.require("com.bnsf.eam.tne.util.FetchValueHelps");
+		
+		//load custom controls
+		jQuery.sap.registerModulePath("com.bnsf.tne.BiWeeklyCalendar", "bnsfControls/BiWeeklyCalendar");
+		jQuery.sap.require("com.bnsf.tne.BiWeeklyCalendar");
+		jQuery.sap.registerModulePath("com.bnsf.tne.CalendarEvents", "bnsfControls/CalendarEvents");
+		jQuery.sap.require("com.bnsf.tne.CalendarEvents");
+		
+		jQuery.sap.registerModulePath("com.bnsf.tne.bnsfContols.MaskInput", "bnsfControls/MaskInput");
+		jQuery.sap.registerModulePath("com.bnsf.tne.bnsfContols.MaskInputRule", "bnsfControls/MaskInputRule");
+		jQuery.sap.registerModulePath("com.bnsf.tne.bnsfContols.VisibleItem", "bnsfControls/VisibleItem");
+		jQuery.sap.registerModulePath("com.bnsf.tne.bnsfContols.TimePickerSlider", "bnsfControls/TimePickerSlider");
+		jQuery.sap.registerModulePath("com.bnsf.tne.bnsfContols.TimePickerSliderRenderer", "bnsfControls/TimePickerSliderRenderer");
+		jQuery.sap.registerModulePath("com.bnsf.tne.bnsfContols.TimePickerRenderer", "bnsfControls/TimePickerRenderer");
+		jQuery.sap.registerModulePath("com.bnsf.tne.bnsfContols.TimePickerSliders", "bnsfControls/TimePickerSliders");
+		jQuery.sap.registerModulePath("com.bnsf.tne.bnsfContols.TimePickerSlidersRenderer", "bnsfControls/TimePickerSlidersRenderer");
+		jQuery.sap.registerModulePath("com.bnsf.tne.bnsfContols.TimePicker", "bnsfControls/TimePicker");
+		jQuery.sap.registerModulePath("com.bnsf.tne.bnsfContols.BreadcrumbsRenderer", "bnsfControls/BreadcrumbsRenderer");
+		jQuery.sap.registerModulePath("com.bnsf.tne.bnsfContols.Breadcrumbs", "bnsfControls/Breadcrumbs");
+		
+		sap.ui.getCore().attachInit(function () {
+			sap.ui.require([
+				"sap/m/Shell",
+				"sap/ui/core/ComponentContainer"
+			], function (Shell, ComponentContainer) {
+				// initialize the UI component
+				new Shell({
+					app: new ComponentContainer({
+						height : "100%",
+						name : "com.bnsf.eam.tne"
+					})
+				}).placeAt("content");
+			});
+		});
+		</script>
+		
+		<script>
+			//Warning to user on closing applicaion Window/Tab
+             var myEvent = window.attachEvent || window.addEventListener; 
+             var chkevent = window.attachEvent ? 'onbeforeunload' : 'beforeunload'; /// make IE7, IE8 compatable 
+ 
+             myEvent(chkevent, function(e) { // For >=IE7, Chrome, Firefox 
+                          var confirmationMessage = 'You are trying to close the Time & Expense Reporting application, all unsaved Work will be lost. \n\nDo you want to continue?';  // a space
+                   (e || window.event).returnValue = confirmationMessage;
+                  return ;
+             });            
+             
+         </script>
+
+	</head>
+	<body class="sapUiBody" role="application">
+		<div id="content"></div>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<core:View controllerName="com.bnsf.eam.tne.controller.PCAddExp"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m" xmlns:custom="com.bnsf.tne.bnsfContols" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showNavButton="true" navButtonPress="handlePageExit">
+		<headerContent>
+			<l:VerticalLayout class="sapUiBreadcrumbsMarginContent"
+				width="100%">
+				<l:content>
+					<custom:Breadcrumbs currentLocationText="Add Expense">
+						<Link text="{path: '/GangId'}" press="navToDashMaster"/>
+						<Link
+							text=" {path: '/WorkDate', formatter: 'com.bnsf.eam.tne.util.DateAndTimeConversion.workDateDisplayBreadcrumb'}"
+							press="navToDashCalendar" /> 
+						<Link text=" Lineup" press="navToLineup" />
+						<Link text=" Activities" press="navToActivities" />
+						<Link text=" Paycodes" press="navToPaycodes" />
+					</custom:Breadcrumbs>
+				</l:content>
+			</l:VerticalLayout>
+
+		</headerContent>
+		<content>
+			<!-- <l:VerticalLayout class="sapUiSmallMargin"> -->
+			<ObjectHeader title="{i18n>tne.pcAddExp.title.SAddExpFollowEmp}" />
+			<!-- <Label text="{i18n>tne.pcAddExp.title.SAddExpFollowEmp}" class="sapUiSmallMarginEnd" 
+				/> -->
+
+			<Tokenizer id="tne.pcAddExp.tokenizer" width="100%" type="Removed"
+				tokens="{path: '/' }" class="sapUiSmallMarginBegin">
+				<Token key="{EmpId}" text="{EmpId}" delete="_deleteToken" />
+			</Tokenizer>
+
+			<f:SimpleForm id="onClickExpenseRow" editable="true"
+				layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2">
+				<f:content>
+					<Label text="{i18n>tne.pcAddExp.lbl.ExpType}" class="sapUiSmallMarginEnd" />
+					<ComboBox id="tne.pcAddExp.ExpType" width="15rem" items="{path: '/'}"
+						class="sapUiTinyMarginBegin" selectionChange="onExpChange">
+						<!-- <core:Item key="VHCL" text="VHCL" /> <core:Item key="DIFF" text="DIFF" 
+							/> <core:Item key="MEAL" text="MEAL" /> -->
+						<core:Item key="{Code}" text="{Code} - {Description}" />
+					</ComboBox>
+
+				</f:content>
+			</f:SimpleForm>
+			<!-- </l:VerticalLayout> -->
+			<Panel id="tne.pcAddExp.panel" width="auto" class="sapUiResponsiveMargin" />
+
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer />
+				<Button text="{i18n>tne.pcAddExp.lbl.save}" press="handlePCAddExpSave"
+					icon="sap-icon://save" type="Accept" />
+				<Button text="{i18n>tne.app.Cancel}" press="handlePCAddExpCancel"
+					type="Reject" icon="sap-icon://decline" />
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

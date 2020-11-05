@@ -1,0 +1,85 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:custom="com.bnsf.tne.bnsfContols">
+	<f:SimpleForm id="onClickExpenseDetails" editable="true"
+		maxContainerCols="2">
+		<f:content>
+			<core:Title text="Expense Details" />
+
+			<Label text="{i18n>tne.pcViewExp.lbl.ExpCode}" class="sapUiSmallMarginEnd" />
+			<ComboBox id="tne.pcViewExp.ExpCode" width="15rem" placeholder="Select Paycode"
+				selectedKey="{/Paycode}" class="sapUiTinyMarginBegin" items="{path: '/ExpenseTypeRef/Paycodes'}">
+				<core:Item key="{Code}" text="{Code} - {Description}" />
+			</ComboBox>
+
+			<Label text="{i18n>tne.pcViewExp.lbl.FromZip}" class="sapUiSmallMarginEnd" />
+			<Input id="tne.pcViewExp.FromZip" type="Number" width="15rem" value="{/OriginZip}"
+				class="sapUiTinyMarginBegin" placeholder="Enter Orizin Zip"/>
+
+			<Label text="{i18n>tne.pcViewExp.lbl.FromCity}" class="sapUiSmallMarginEnd" />
+			<Input id="tne.pcViewExp.FromCity" width="15rem" value="{/OriginCity}"
+				class="sapUiTinyMarginBegin" placeholder="Enter Orizin City"/>
+
+			<Label text="{i18n>tne.pcViewExp.lbl.FromState}" class="sapUiSmallMarginEnd" />
+			<Input id="tne.pcViewExp.FromState" width="15rem" value="{/OriginState}"
+				class="sapUiTinyMarginBegin"  placeholder="Enter Orizin State"/>
+				
+				<Label text="{i18n>tne.pcViewExp.lbl.Miles}" class="sapUiSmallMarginEnd" />
+			<Input id="tne.pcViewExp.Miles" width="15rem" value="{/Miles}"
+				class="sapUiTinyMarginBegin"  placeholder="Enter Miles"/>
+
+			<Label text="{i18n>tne.pcViewExp.lbl.stTime}" class="sapUiSmallMarginEnd" />
+			<custom:TimePicker id="tne.pcViewExp.frag.stTime"
+				width="8rem" class="sapUiTinyMarginBegin" dateValue="{path:'/StEPOC'}"
+				valueFormat="1970-01-01THH:mm" displayFormat="HH:mm" />
+
+			<!-- <custom:TimePicker id="tne.pcViewExp.frag.stTime" width="8rem" class="sapUiTinyMarginBegin" 
+				dateValue="{path:'/StartTime/ms', formatter: '.formatTime'}" valueFormat="1970-01-01THH:mm" 
+				displayFormat="HH:mm" /> -->
+
+			<!-- <Label text="{i18n>tne.pcViewExp.lbl.stDate}" class="sapUiSmallMarginEnd" 
+				/> <DatePicker id="tne.pcViewExp.frag.stDate" displayFormat="short" width="10rem" 
+				change="handleChange" class="sapUiTinyMarginBegin" /> -->
+
+			<Label text="{i18n>tne.pcViewExp.lbl.Cmnts}" class="sapUiSmallMarginEnd" />
+			<TextArea id="tne.pcViewExp.frag.Cmnts" value="{/Comments}"
+				rows="3" width="15rem" class="sapUiTinyMarginBegin"  placeholder="Enter Comments"/>
+
+			<core:Title text="" />
+			
+
+			<Label text="{i18n>tne.pcViewExp.lbl.TravelCode}" class="sapUiSmallMarginEnd" />
+			<ComboBox id="tne.pcViewExp.trvlCode" width="15rem"
+				selectedKey="{/TravelCode}" class="sapUiTinyMarginBegin"
+				items="{path: '/ExpenseTypeRef/TravelCodes'}"  placeholder="Select Travel Code">
+				<core:Item key="{Code}" text="{Code} - {Description}" />
+			</ComboBox>
+
+			<Label text="{i18n>tne.pcViewExp.lbl.ToZip}" class="sapUiSmallMarginEnd" />
+			<Input id="tne.pcViewExp.ToZip" type="Number" width="15rem" value="{/DestinationZip}"
+				class="sapUiTinyMarginBegin"  placeholder="Enter Destination Zip"/>
+
+			<Label text="{i18n>tne.pcViewExp.lbl.ToCity}" class="sapUiSmallMarginEnd" />
+			<Input id="tne.pcViewExp.ToCity" width="15rem" value="{/DestinationCity}"
+				class="sapUiTinyMarginBegin" placeholder="Enter Destination City"/>
+
+			<Label text="{i18n>tne.pcViewExp.lbl.ToState}" class="sapUiSmallMarginEnd" />
+			<Input id="tne.pcViewExp.ToState" width="15rem" value="{/DestinationState}"
+				class="sapUiTinyMarginBegin" placeholder="Enter Destination State"/>
+
+			<Label text="{i18n>tne.pcViewExp.lbl.endTime}" class="sapUiSmallMarginEnd" />
+			<custom:TimePicker id="tne.pcViewExp.frag.endTime"
+				width="8rem" class="sapUiTinyMarginBegin" dateValue="{path:'/EtEPOC'}"
+				valueFormat="1970-01-01THH:mm" displayFormat="HH:mm" />
+
+			<!-- <custom:TimePicker id="tne.pcViewExp.frag.endTime" width="8rem" class="sapUiTinyMarginBegin" 
+				dateValue="{path:'/EndTime/ms', formatter: '.formatTime'}" valueFormat="1970-01-01THH:mm" 
+				displayFormat="HH:mm" /> -->
+
+			<!-- <Label text="{i18n>tne.pcViewExp.lbl.endDate}" class="sapUiSmallMarginEnd" 
+				/> <DatePicker id="tne.pcViewExp.frag.endDate" displayFormat="short" width="10rem" 
+				change="handleChange" class="sapUiTinyMarginBegin" /> -->
+
+		</f:content>
+	</f:SimpleForm>
+
+</core:FragmentDefinition>

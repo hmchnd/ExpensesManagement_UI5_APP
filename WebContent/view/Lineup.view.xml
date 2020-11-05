@@ -1,0 +1,103 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:icon="sap.ui.core" xmlns:custom="com.bnsf.tne.bnsfContols"
+	xmlns:l="sap.ui.layout" controllerName="com.bnsf.eam.tne.controller.Lineup"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showNavButton="true" navButtonPress="handlePageExit">
+		<headerContent>
+			<l:VerticalLayout class="sapUiBreadcrumbsMarginContent" width="100%">
+				<l:content>
+					<custom:Breadcrumbs currentLocationText="{i18n>tne.lineup.lbl.PageTitle}">
+						<Link text="{path: '/selGang/id'}" press="navToDashMaster"/>
+						<Link text="{path: '/selGang/workDate', formatter: 'com.bnsf.eam.tne.util.DateAndTimeConversion.workDateDisplayBreadcrumb'}" press="navToDashCalendar"/>
+					</custom:Breadcrumbs>
+				</l:content>
+			</l:VerticalLayout>
+		</headerContent>
+		<Table id="tne.lineup.tbl_lineup" class="bnsfTableAlternateColor"
+			items="{path: '/selGang/lineupDisplay',
+					sorter: {
+						path: 'payRate',
+						descending: true
+					}	
+				}"
+			mode="MultiSelect">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title id="tne.lineup.gngTblHdrTitle" text="{i18n>tne.lineup.lbl.GangTblHeaderLbl}"
+						level="H2">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow" />
+						</layoutData>
+					</Title>
+					<ToolbarSpacer></ToolbarSpacer>
+					<SearchField id="tne.lineup.TxtBxSearchGangEmp"
+						liveChange="searchGangEmployee" search="searchGangEmployee"
+						selectOnFocus="false" placeholder="{i18n>tne.lineup.lbl.PHSearch}">
+						<layoutData>
+							<OverflowToolbarLayoutData minWidth="100px"
+								maxWidth="300px" shrinkable="true" />
+						</layoutData>
+					</SearchField>
+					<Button icon="sap-icon://action-settings" press="onGangTableSettingsPressed">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow" />
+						</layoutData>
+					</Button>
+				</OverflowToolbar>
+			</headerToolbar>
+			<infoToolbar>
+				<Toolbar active="true" visible="false"
+					press="[handleViewSettingsDialogFilterBarPressed, views.control.tableViewSettingsDialog]">
+					<Label text="?" />
+				</Toolbar>
+			</infoToolbar>
+			<columns>
+				<Column width="20%" mergeDuplicates="true">
+					<Text text="{i18n>tne.lineup.lbl.Position}" />
+				</Column>
+				<Column minScreenWidth="Tablet" mergeDuplicates="true"
+					demandPopin="true" width="5rem">
+					<Text text="{i18n>tne.lineup.lbl.PositionNo}" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+					<Text text="{i18n>tne.lineup.lbl.ReliefNo}" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>tne.lineup.lbl.Employee}" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="4rem">
+					<Text text="{i18n>tne.lineup.lbl.Absentee}" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem press="handleLineItemPress">
+					<cells>
+						<ObjectIdentifier text="{positionName}" title="${payRate}" />
+						<Link text="{positionId}" press="goToLUPositionPage"
+							emphasized="true" />
+						<Text text="{posReliefNo}" />
+						<Link text="{empName}" emphasized="true" enabled="{active}"
+							press="handleLineItemPress" />
+						<icon:Icon src="{path:'navAbsentees', formatter:'.iconFormatter'}"
+							class="sapUiResponsiveMargin" />
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<footer>
+			<OverflowToolbar>
+				<Button text="{i18n>tne.lineup.lbl.GangProfile}" press="openGangDayProfileDialog"
+					icon="sap-icon://group" type="Emphasized" />
+				<Button text="{i18n>tne.lineup.lbl.EditBtn}" press="openEditMultipleEmpDetPage"
+					icon="sap-icon://edit" type="Emphasized" />
+				<Button text="{i18n>tne.lineup.lbl.PullLineup}" press="getOnDemandLineUp"
+					icon="sap-icon://pull-down" type="Emphasized" />
+				<ToolbarSpacer />
+				<Button text="{i18n>tne.app.SaveDraft}" type="Emphasized"
+					icon="sap-icon://save" press="handleSaveDraft" />
+				<Button text="{i18n>tne.app.Next}" press="handleNext"
+					icon="sap-icon://navigation-right-arrow" type="Accept" />
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</core:View>

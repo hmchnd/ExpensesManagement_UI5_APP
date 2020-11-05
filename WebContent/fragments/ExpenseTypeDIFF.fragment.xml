@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:custom="com.bnsf.tne.bnsfContols">
+	<f:SimpleForm id="onClickExpenseDetails" editable="true"
+		maxContainerCols="2">
+		<f:content>
+			<core:Title text="Expense Details" />
+			
+			<Label text="{i18n>tne.pcViewExp.lbl.ExpCode}" class="sapUiSmallMarginEnd" />
+			<ComboBox id="tne.pcViewExp.ExpCodeDiff" width="15rem" placeholder="Select Paycode"
+				selectedKey="{/Paycode}" class="sapUiTinyMarginBegin" items="{path:'/ExpenseTypeRef/Paycodes'}">
+				<core:Item key="{Code}" text="{Code} - {Description}" />
+			</ComboBox>
+
+			<Label text="{i18n>tne.pcViewExp.lbl.Duration}" class="sapUiSmallMarginEnd" />
+			<custom:TimePicker id="tne.pcViewExp.frag.Duration"
+				width="8rem" class="sapUiTinyMarginBegin" dateValue="{path: '/Duration'}"
+				valueFormat="1970-01-01THH:mm" displayFormat="HH:mm" />
+
+			<!-- <custom:TimePicker id="tne.pcViewExp.frag.Duration" width="8rem" 
+				class="sapUiTinyMarginBegin" dateValue="{parts: ['/Hours','/Mins'],formatter: 
+				'.formatDuration'}" valueFormat="1970-01-01THH:mm" displayFormat="HH:mm" 
+				/> -->
+		</f:content>
+	</f:SimpleForm>
+
+</core:FragmentDefinition>

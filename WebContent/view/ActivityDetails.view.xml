@@ -1,0 +1,344 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap" xmlns:custom="com.bnsf.tne.bnsfContols" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:m="sap.m"
+	xmlns:cor="sap.ui.core" controllerName="com.bnsf.eam.tne.controller.ActivityDetails"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:Page id="tne.lunpPos.page" showNavButton="true"
+		navButtonPress="handlePageExit">
+		<m:content>
+			<ObjectPageLayout id="tne.lunpPos.ObjectPageLayout"
+				isChildPage="true" showFooter="true" enableLazyLoading="false"
+				showTitleInHeaderContent="true" showEditHeaderButton="true"
+				editHeaderButtonPress="handleEditBtnPress">
+				<sections>
+				<ObjectPageSection
+						title="{i18n>tne.actDetail.title.ActivityDetails}" importance="Medium">
+						<subSections>
+							<ObjectPageSubSection id="tne.actDetail.ActivityDetails">
+								<blocks>
+									<m:VBox class="sapUiSmallMargin">
+										<f:SimpleForm id="SimpleFormChange480" 
+											minWidth="1024"
+											maxContainerCols="2" 
+											editable="true" 
+											layout="ResponsiveGridLayout"
+											labelSpanL="2" 
+											labelSpanM="2" 
+											labelSpanS="4"
+											emptySpanL="0" 
+											emptySpanM="0"
+											emptySpanS="0"
+											columnsL="2" 
+											columnsM="2"
+											columnsS="2"  
+											class="editableForm">
+											<f:content>
+												<core:Title text="" />
+												<m:Label text="{i18n>tne.actDetail.lbl.LS}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" />
+													</m:layoutData>
+												</m:Label>
+												<m:Input id="tne.actDetail.oTextFieldFrLS" 
+													value="{/LineSegment}"
+													maxLength = "4" 
+													type = "Number" 
+													showSuggestion = "true"
+													change = "validateLSSelection"
+													suggestionItems = "{/LSRef}">
+													<m:suggestionItems>
+														<core:Item text="{LineSegment}" />
+													</m:suggestionItems>
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" />
+													</m:layoutData>
+												</m:Input>
+
+												<m:Text id="tne.actDetail.lblBMPEMPRange" textAlign="End">
+													<m:layoutData>
+														<l:GridData span="L4 M4 S4" />
+													</m:layoutData>
+												</m:Text>
+
+												<m:RadioButton id="oRadioButtonAFENo" select="onSelectOAFERadioBtn">
+													<m:layoutData>
+														<l:GridData span="L1 M1 S1" linebreak="true" />
+													</m:layoutData>
+												</m:RadioButton>
+												<m:Label text="{i18n>tne.actDetail.lbl.AFE}">
+													<m:layoutData>
+														<l:GridData span="L1 M1 S1" />
+													</m:layoutData>
+												</m:Label>
+												<m:Select id="oDropDownAFENo" change="onAFEDropDownChange"
+													items="{
+													path: '/results'}">
+
+													<core:Item key="{ID}" text="{ID}-{Description}" />
+													<m:layoutData>
+														<l:GridData span="L6 M4 S4" />
+													</m:layoutData>
+												</m:Select>												
+												<m:Label id="oGangActivityPopActGenericAFELabel" text="Generic AFE" required="true">
+													<m:layoutData>
+														<l:GridData span="L2 M1 S1" linebreak="true" />
+													</m:layoutData>
+												</m:Label>
+
+												<m:Input id="oGangActivityGenericAFENo" 
+													maxLength ="7" visible='false' 
+													value="{/GenAfeNum}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" />
+													</m:layoutData>
+												</m:Input>
+												<m:Label text="{i18n>tne.actDetail.lbl.TskCat}">
+													<m:layoutData>
+														<l:GridData span="L2 M1 S1" linebreak="true" />
+													</m:layoutData>
+												</m:Label>
+
+												<m:Select id="oDropDownTaskCategory" change="onselectionChangeTaskCategory"  
+														items="{
+																path: '/results'
+														}">
+													<m:items>
+														<core:Item key="{ID}" text="{ID}" />
+													</m:items>
+													<m:layoutData>
+														<l:GridData span="L6 M2 S2" />
+													</m:layoutData>
+												</m:Select>
+																								
+												<m:Label text="{i18n>tne.actDetail.lbl.SD}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" linebreak="true"/>
+													</m:layoutData>
+												</m:Label>
+	
+												<m:DatePicker id="DP4" dateValue="{/StartDate}" change="onStDateChange"
+													displayFormat="MMM-dd-yy" width="8rem" >
+													<m:layoutData>
+														<l:GridData span="L3 M3 S4" />
+													</m:layoutData>
+												</m:DatePicker>
+												
+												<m:Label text="{i18n>tne.actDetail.lbl.ST}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" linebreak="true"/>
+													</m:layoutData>
+												</m:Label>	
+												<custom:TimePicker id="tne.actDetail.ActHrs.st"
+													dateValue="{/StartTime}" change="onStTimeChange"																								
+													width="8rem"  displayFormat="HH:mm">
+												</custom:TimePicker>
+
+												<m:Label text="{i18n>tne.actDetail.lbl.PreShftOTCode}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" linebreak="true" />
+													</m:layoutData>
+												</m:Label>
+												<m:ComboBox id="tne.actDetail.preOTDD"
+													placeholder="Select Overtime Reason" 
+												 	selectedKey="{/RcBefore}"
+												 	change="onPreOTDDChange"													
+													items="{										                         
+										                     path:'/OVReasonRef'										                      
+										             }">																					
+													<core:Item key="{Code}" text="{Code} - {Description}" />
+													<m:layoutData>
+														<l:GridData span="L6 M2 S2" />
+													</m:layoutData>
+												</m:ComboBox>
+												<core:Title text="" />
+												
+												<m:Label text="{i18n>tne.actDetail.lbl.BMP}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" />
+													</m:layoutData>
+												</m:Label>
+
+												<m:Input id= "tne.actDetail.bmpInput" type="Number"		
+														valueStateText="{i18n>EMPBMPErrTxt}" 
+														value="{/BMP}" change="inBMPChange" 
+														liveChange="validateMPFormat">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" />
+													</m:layoutData>
+												</m:Input>
+												
+												<m:Label text="{i18n>tne.actDetail.lbl.EMP}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" linebreak="false" />
+													</m:layoutData>
+												</m:Label>
+
+												<m:Input id= "tne.actDetail.EmpInput" type="Number"
+													valueStateText="{i18n>EMPBMPErrTxt}" 
+													value="{/EMP}"  change="inEMPChange" 
+													liveChange="validateMPFormat">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" />
+													</m:layoutData>
+												</m:Input>
+												
+												<m:RadioButton id="oBTCRadioButton" selected="true" select="onSelectOfBTC">
+													<m:layoutData>
+														<l:GridData span="L1 M1 S1" linebreak="true" />
+													</m:layoutData>
+												</m:RadioButton>
+												<m:Label text="BTC">
+													<m:layoutData>
+														<l:GridData span="L1 M1 S1" />
+													</m:layoutData>
+												</m:Label>
+												<m:Input id="oBTCInput" value="{/BillToCenter}">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" />
+													</m:layoutData>
+												</m:Input>
+												<m:Label text="{i18n>tne.actDetail.lbl.TaskName}">											
+													<m:layoutData>
+														<l:GridData span="L2 M1 S1" linebreak="true" />
+													</m:layoutData>
+												</m:Label>
+												<m:Select id="oDropDownTaskName" 
+													items="{
+														path: '/results'					
+													}">
+												<core:Item key="{Description}" text="{Description}" />
+													<m:layoutData>
+														<l:GridData span="L6 M2 S2" />
+													</m:layoutData>
+												</m:Select>
+												
+												<m:Label text="End Date">
+													<m:layoutData>
+														<l:GridData span="L2 M2 S2" linebreak="true" />
+													</m:layoutData>
+												</m:Label>
+												<m:DatePicker id="DP5" dateValue="{/EndDate}" change="onEndDateChange"
+													displayFormat="MMM-dd-yy" width="8rem">	
+													<m:layoutData>
+														<l:GridData span="L3 M3 S4" />
+													</m:layoutData>
+												</m:DatePicker>
+												
+												<m:Label text="{i18n>tne.actDetail.lbl.ET}" />
+												<custom:TimePicker id="tne.actDetail.ActHrs.et"
+													dateValue="{/EndTime}"	change="onEndTimeChange"									
+													width="8rem"  displayFormat="HH:mm" />
+													
+												<m:Label text="{i18n>tne.actDetail.lbl.PostShftOTCode}">
+													<m:layoutData>
+														<l:GridData span="L2 M1 S1" linebreak="true" />
+													</m:layoutData>
+												</m:Label>
+												<m:ComboBox id="tne.actDetail.postOTDD" 
+													placeholder="Select Overtime Reason" 
+													selectedKey="{/RcAfter}"
+													change="onPostOTDDChange"													
+													items="{										                         
+										                     path:'/OVReasonRef'										                      
+										             	}">													
+													<core:Item key="{Code}" text="{Code} - {Description}" />
+													<m:layoutData>
+														<l:GridData span="L6 M2 S2" />
+													</m:layoutData>
+												</m:ComboBox>
+											</f:content>
+										</f:SimpleForm>
+									</m:VBox>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+
+					<ObjectPageSection title="{i18n>tne.actDetail.title.People}"
+						importance="Medium">
+						<subSections>
+							<ObjectPageSubSection title="{i18n>tne.actDetail.title.People}">
+								<blocks>
+									<m:Table id="tne.actDetail.pplTbl" items="{path:'/NavActivityPeople'}"
+										noDataText="">
+										<m:columns>
+											<m:Column width="3rem">
+												<m:CheckBox select="selectDeselect"/>
+											</m:Column>
+											<m:Column>
+												<m:Text text="{i18n>tne.actDetail.lbl.EmpId}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="8rem">
+												<m:Text text="{i18n>tne.actDetail.lbl.stDate}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.actDetail.lbl.stTime}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="8rem">
+												<m:Text text="{i18n>tne.actDetail.lbl.EndDate}" />
+											</m:Column>
+											<m:Column demandPopin="true" width="6rem">
+												<m:Text text="{i18n>tne.actDetail.lbl.EndTime}" />
+											</m:Column>
+											<m:Column demandPopin="false" width="3rem">
+													<cor:Icon src="sap-icon://message-warning"/>
+<!-- 												<m:Text text="{i18n>tne.actDetail.lbl.ErrWarn}" /> -->
+											</m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem>
+												<m:cells>
+													<m:CheckBox selected="{Selected}" />
+													<m:Text text="{EmployeeDisplayName}" />
+													<m:DatePicker id="DP6" dateValue="{StartDate}" displayFormat="MMM-dd-yy" />		
+													<custom:TimePicker id="tne.lnupEmp.AbsTime.st"
+															dateValue="{StartTime}"
+														 	displayFormat="HH:mm" 
+													/>
+													<m:DatePicker id="DP7" dateValue="{EndDate}" displayFormat="MMM-dd-yy" />
+													<custom:TimePicker id="tne.lnupEmp.AbsTime.et"
+														dateValue="{EndTime}"
+														displayFormat="HH:mm" 
+													/>
+													<cor:Icon src="sap-icon://message-warning"
+														visible="{															  
+															  	parts:['Results', 'Selected'],
+															  	formatter:'com.bnsf.eam.tne.util.Validators.IconFormatter'															  
+															  }"															  
+														color="{													
+																parts:['Results'],
+													 			formatter:'com.bnsf.eam.tne.util.Validators.ColorFormatter'																								
+																}"		  														  
+														class="sapUiResponsiveMargin"
+														press="displayPopover" >	
+	 												</cor:Icon>
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+				</sections>
+			</ObjectPageLayout>
+			
+			<m:ResponsivePopover id="oPopover" placement="Left">
+			<m:content>
+			
+			<m:List id="PplErrorList">
+				
+			</m:List>
+			</m:content>
+			</m:ResponsivePopover>
+		</m:content>
+		<m:footer>
+			<m:Toolbar>
+			<m:Button text="{i18n>tne.actDetail.lbl.delActivity}" icon="sap-icon://delete" press="delRecords" />
+				<m:ToolbarSpacer />
+				<m:Button text="{i18n>tne.app.Save}" type="Accept" icon="sap-icon://save" press="saveActivityDetails" />
+				<m:Button text="{i18n>tne.app.Cancel}" type="Reject" icon="sap-icon://decline" press="" />
+			</m:Toolbar>
+		</m:footer>
+	</m:Page>
+</core:View>

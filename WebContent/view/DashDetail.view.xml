@@ -1,0 +1,25 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="com.bnsf.eam.tne.controller.DashDetail" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="tne.dashDet.page" title="{/selGang/id}" showNavButton="{/deviceDetails/system/phone}"
+	navButtonPress=".navToMaster">
+		<headerContent>
+					<SegmentedButton id="tne.dashDet.hdrSegBtn" selectedKey="tne.dashDet.icoKeyCal">
+						<items>
+							<SegmentedButtonItem id = "tne.dashDet.calenderId" icon="sap-icon://appointment" key="tne.dashDet.icoKeyCal" press=".onCalenderCall"/>							
+							<SegmentedButtonItem id = "tne.dashDet.emailId" icon="sap-icon://email" key="tne.dashDet.icoKeyMsg" press=".onMessageCall"/>
+							<SegmentedButtonItem icon="sap-icon://vertical-bar-chart" key="tne.dashDet.icoKeyTR" enabled="false" />
+						</items>
+						
+					</SegmentedButton>
+		</headerContent>
+		<content>
+	
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Label id="tne.dashDet.ftrLblTime" text="{path: '/today', formatter: '.formatFooterClockTime'}"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

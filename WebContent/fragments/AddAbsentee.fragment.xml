@@ -1,0 +1,72 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+      xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:custom="com.bnsf.tne.bnsfContols">
+      <Dialog title="{i18n>tne.lnupEmp.title.AddNAbsentee}"
+            contentWidth="50%">
+            <beginButton>
+                  <Button text="{i18n>tne.app.Cancel}" press="_closeAbsentDialog" type="Reject"/>
+            </beginButton>
+            <endButton>
+                  <Button text="{i18n>tne.app.Save}" press="_addAbsenteeDetails" type="Accept"/>
+            </endButton>
+            <content>
+                  <f:SimpleForm id="onClickEdit" editable="true"
+                        layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4">
+                        <f:content>
+                              <Label text="{i18n>tne.lnupEmp.lbl.Type}" class="sapUiSmallMarginEnd" />
+                              <ComboBox id="myControl" width="15rem" class="sapUiTinyMarginBegin"
+                                    items="{path: '/results'}">
+                                    <core:Item key="{Code}" text="{Code} - {Description}" />
+                              </ComboBox>
+
+                              <Label text="{i18n>tne.lnupEmp.lbl.AllDay}" class="sapUiSmallMarginEnd" />
+                              <CheckBox class="sapUiTinyMarginBegin" />
+
+                              <Label text="{i18n>tne.lnupEmp.lbl.stTime}" class="sapUiSmallMarginEnd" />
+                              <custom:TimePicker id="tne.lnupEmp.frag.stTime"
+                                    width="8rem" class="sapUiTinyMarginBegin" dateValue=""
+                                    valueFormat="HH:mm" displayFormat="HH:mm" />
+
+                              <Label text="{i18n>tne.lnupEmp.lbl.EndTime}" class="sapUiSmallMarginEnd" />
+                              <custom:TimePicker id="tne.lnupEmp.frag.EndTime"
+                                    width="8rem" class="sapUiTinyMarginBegin" dateValue=""
+                                    valueFormat="HH:mm" displayFormat="HH:mm" />
+
+                        </f:content>
+                  </f:SimpleForm>
+                  <!-- <MessageStrip id="tne.lnupEmp.frag.ErrorLab" text=" " type="Error" 
+                        showIcon="true" showCloseButton="true" visible="false"> </MessageStrip> -->
+                  <Text id="tne.lnupEmp.frag.ErrorLab" text=" " textAlign="Begin" MaxLines="4"
+                        width="100%" visible="false">
+                  </Text>
+
+                  <!-- Error - Absentee employee With Exsisting AW or AA -->
+
+
+                  <!-- <l:VerticalLayout width="100%"> <l:content> <FlexBox alignItems="Center" 
+                        justifyContent="Center"> <items> <VBox> <items> <HBox> <items> <Label text="{i18n>tne.lnupEmp.lbl.Type}" 
+                        class="sapUiSmallMarginEnd" /> <Select id="myControl" width="15rem" items="{path: 
+                        '/results'}"> <core:Item key="{Code}" text="{Code} - {Description}" /> </Select> 
+                        </items> </HBox> <HBox> <items> <Label text="{i18n>tne.lnupEmp.lbl.AllDay}" 
+                        class="sapUiSmallMarginTop sapUiSmallMarginEnd" /> <CheckBox></CheckBox> 
+                        </items> </HBox> <HBox> <items> <Label text="{i18n>tne.lnupEmp.lbl.stTime}" 
+                        class="sapUiSmallMarginTop sapUiSmallMarginEnd" /> <custom:TimePicker id="tne.lnupEmp.frag.stTime" 
+                        class=" sapUiSmallMarginTop sapUiMediumMarginBegin" dateValue="" width="6rem" 
+                        valueFormat="HH:mm" displayFormat="HH:mm" /> </items> </HBox> <HBox> <items> 
+                        <Label text="{i18n>tne.lnupEmp.lbl.EndTime}" class="sapUiSmallMarginTop sapUiSmallMarginEnd" 
+                        /> <custom:TimePicker id="tne.lnupEmp.frag.EndTime" class=" sapUiSmallMarginTop 
+                        sapUiMediumMarginBegin" dateValue="" width="6rem" valueFormat="HH:mm" displayFormat="HH:mm" 
+                        /> </items> </HBox> <HBox> <items> <Label id="tne.lnupEmp.frag.ErrorLab"></Label> 
+                        </items> </HBox> </items> </VBox> </items> </FlexBox> </l:content> </l:VerticalLayout> -->
+
+                  <!-- <VBox class="sapUiSmallMargin"> <f:SimpleForm id="" minWidth="1024" 
+                        editable="false" layout="ResponsiveGridLayout" maxContainerCols="3"> <f:content> 
+                        <HBox> <Label text="{i18n>tne.lnupEmp.lbl.Type}" /> <Select value="{}" /> 
+                        </HBox> <Label text="{i18n>tne.lnupEmp.lbl.AllDay}" /> <CheckBox /> <Label 
+                        text="{i18n>tne.lnupEmp.lbl.stTime}" /> <custom:TimePicker id="tne.lnupEmp.fragment.StartTime" 
+                        dateValue="{StartDate}" width="6rem" valueFormat="HH:mm" displayFormat="HH:mm" 
+                        /> <Label text="{i18n>tne.lnupEmp.lbl.EndTime}" /> <custom:TimePicker id="tne.lnupEmp.fragment.EndTime" 
+                        dateValue="{StartDate}" width="6rem" valueFormat="HH:mm" displayFormat="HH:mm" 
+                        /> </f:content> </f:SimpleForm> </VBox> -->
+            </content>
+      </Dialog>
+</core:FragmentDefinition>

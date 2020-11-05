@@ -1,0 +1,23 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="com.bnsf.eam.tne.controller.DashCalendar"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:custom="com.bnsf.tne">
+	<l:VerticalLayout width="100%" enabled='true'>
+		<l:content>
+			<VBox>
+				<items>
+					<FlexBox id="tne.dashCal.idCalFlexBox" alignItems="Center" justifyContent="Center">
+						<items>
+							<custom:BiWeeklyCalendar id="tne_dashCal_idBiWeeklyCal"
+								title="{i18n>tne.dashCal.lbl.CalTitle}" cellWidth="6.5" cellHeight="6.1"
+								onSelect="onWorkDateSelected">
+							</custom:BiWeeklyCalendar>
+						</items>
+					</FlexBox>
+				</items>
+			</VBox>
+		</l:content>
+	</l:VerticalLayout>
+
+
+</core:View>

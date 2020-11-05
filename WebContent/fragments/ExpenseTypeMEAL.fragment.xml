@@ -1,0 +1,74 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:custom="com.bnsf.tne.bnsfContols">
+
+	<f:SimpleForm id="onClickExpenseDetails" editable="true"
+		minWidth="1024" layout="ResponsiveGridLayout" labelSpanL="2"
+		labelSpanM="2">
+		<f:content>
+			<!-- <Toolbar id="TB1"> <Title text="Expense Details" level="H4" titleStyle="H4" 
+				/> <ToolbarSpacer /> <Button icon="sap-icon://delete" type="Reject" press="handleDeleteExp"/> 
+				</Toolbar> -->
+			<core:Title text="Expense Details" />
+
+			<Label text="{i18n>tne.pcViewExp.lbl.ExpCode}" class="sapUiSmallMarginEnd" />
+			<ComboBox id="tne.pcViewExp.ExpCodeMeal" width="15rem" placeholder="Select Paycode"
+				selectedKey="{/Paycode}" class="sapUiTinyMarginBegin" items="{path: '/ExpenseTypeRef/Paycodes'}">
+				<core:Item key="{Code}" text="{Code} - {Description}" />
+			</ComboBox>
+
+			<Label text="{i18n>tne.pcViewExp.lbl.Hours}" class="sapUiSmallMarginEnd" />
+			<RadioButtonGroup id="tne.pcViewExp.frag.RBG.Hours"
+				selectedIndex="{path:'/OriginZip', formatter: '.formatRadioButton'}"
+				columns="2" class="sapUiMediumMarginBottom" select="onRadioButtonChange">
+				<buttons>
+
+					<RadioButton id="tne.pcViewExp.frag.LS.Milepost" text="LS/Milepost" />
+					<RadioButton id="tne.pcViewExp.frag.Zip.Hotel" text="Zipcode/Hotel" />
+
+				</buttons>
+			</RadioButtonGroup>
+
+			<Label id="tne.pcViewExp.lbl.AssembPoint" text="{i18n>tne.pcViewExp.lbl.AssembPoint}"
+				class="sapMLabelNoText" />
+			<Text id="tne.pcViewExp.frg.AssembPoint" text="" />
+
+			<Label id="tne.pcViewExp.lbl.LS" text="{i18n>tne.pcViewExp.lbl.LS}"
+				class="sapUiSmallMarginEnd" />
+			<!-- <Input id="tne.pcViewExp.frg.LS" value="" width="6rem" /> -->
+			<Input id="tne.pcViewExp.frg.LS" value=" " maxLength="4" type="Number" placeholder="Enter LS"
+				showSuggestion="true" liveChange="inlivechangeLS" change="LSChange"
+				suggestionItemSelected="suggestionForLS" width="6rem">
+
+				<layoutData>
+					<l:GridData span="L2 M2 S2" />
+				</layoutData>
+
+			</Input>
+
+			<Label id="tne.pcViewExp.lbl.Milepost" text="{i18n>tne.pcViewExp.lbl.Milepost}"
+				class="sapUiSmallMarginEnd" />
+			<Input id="tne.pcViewExp.frg.Milepost" value="{/MilePost}"
+				width="6rem" />
+
+
+			<Label id="tne.pcViewExp.lbl.ZIP" text="{i18n>tne.pcViewExp.lbl.ZIP}"
+				class="sapUiSmallMarginEnd" visible="false" />
+			<Input id="tne.pcViewExp.frg.ZIP" value="{/OriginZip}" width="6rem"
+				visible="false" change="handleZipCodeChange" />
+
+			<Label id="tne.pcViewExp.lbl.Hotel" text="{i18n>tne.pcViewExp.lbl.Hotel}"
+				class="sapUiSmallMarginEnd" visible="false" />
+			<Select id="tne.pcViewExp.frg.Hotel" width="15rem"
+				items="{path: '/ExpenseTypeRef/HotelCodes'}" visible="false">
+				<core:Item key="{Code}" text="{Code} - {Description}" />
+			</Select>
+
+
+
+		</f:content>
+	</f:SimpleForm>
+
+
+
+
+</core:FragmentDefinition>
